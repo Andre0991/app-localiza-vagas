@@ -1,0 +1,67 @@
+* Nomenclatura
+*Perfil motorista:* Perfil de usuário que tem um carro e quer usar o app para estacionar em algum lugar.
+*Perfil morador:* Perfil de usuário que quer ceder sua calçada em determinados horários para alguém estacionar. 
+ 
+* Requisitos de cadastro
+Requisitos para guardar no banco de dados/local storage:
+- Nome
+- Dados do carro (exclusivo para perfil motorista)
+  - Placa, modelo, cor
+- Endereço (exclusivo para perfil morador)
+  - Rua/Avenida/etc (pegar lista completa dessas coisas)
+  - Número
+  - CEP
+  - Etc. (levantar requisitos de endereço direito)
+- Horários em que pode ceder calçada (exclusivo para perfil morador).
+- Dados da conta do Paypal (vamos simplesmente mocar, pedindo um código qualquer)
+
+* Features/Tarefas
+** Cadastro de login com Facebook
+Fazer a integração e testar o login.
+** Cadastro sem Facebook
+Testar o cadastro e o login.
+** Integração com Google Maps
+*** Pegar chave da API
+*** Testar localização atual
+*** Testar pegar qual é a calçada disponível mais próxima
+** CRUD calçada
+Criar função para cadastrar calçada disponível.
+- Usuário deve indicar o endereço (pesquisando no mapa provavelmente).
+- Usuário deve indicar os horários por dia da semana e a data de expiração.
+- Inicialmente, vamos limitar um usuário a apenas uma calçada (um usuário não poderá cadastrar mais de uma calçada).
+
+Também criar telas para:
+- Exibir a calçada cadastrada.
+- Modificar o horário/data limite de disponibilidade da calçada cadastrada.
+- Deletar cadastro de calçada.
+** Tela: Alterações de cadastro de usuário
+Criar tela para:
+- Modificar dados da conta do paypal;
+- Modificar endereço;
+*** Modificar carro
+*** Modificar cadastro de calçada
+** Criar API do backend
+O backend deve ter uma API que tem métodos para:
+- Retornar qual é a calçada disponível (com horário permitido, dia permitido e que está a mais de 20 min de não estar mais disponível) cadastrada mais próxima.
+- Receber informação que algum usuário estacionou em calçada.
+- Responder um request sobre se determinada calçada está ocupada ou não (será usado para mostrar o status da calçada).
+** Tela: Status da calçada
+- Deve informar se ela está em uso ou não.
+- Ainda vamos decidir exatamente se isso será uma tela separada ou se aparecerá na home ou algo assim.
+** Modelar banco de dados
+- Incluir entidades para usuário, carro, calçada, etc.
+** Tela: estacionar em calçada.
+- Deve listar todas as calçadas próximas;
+- Usuário deve poder escolher uma das calçadas disponíveis listadas.
+- Quando usuário escolher, ele deve ser guiado até ela (ver item abaixo).
+- Deve haver botão para confirmar que ele estacionou. A partir desse momento, o tempo deve ser contado.
+*** Guiar usuário até a calçada mais próxima
+- Verificar se é muito difícil fazer. O objetivo é que, como um GPS, o app
+  indique o caminho (se não for por voz em tempo real, ao menos mostrar a rota na tela.)
+*** Mostrar o quanto ele vai ser cobrado
+*** Mandar tempo resultante para API
+** Tela: Meus ganhos
+- Deve listar todas as vezes em que alguém estacionou na sua calçada e quanto você vai ganhar em cada vez.
+** Tela: Vezes em que usuário estacionou
+- Deve listar todas as vezes em que usuário estacionou em calçada e quanto ele vai pagar em cada vez.
+
