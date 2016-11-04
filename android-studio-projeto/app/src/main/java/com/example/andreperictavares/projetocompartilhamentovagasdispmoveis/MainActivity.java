@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
+    public static final String SHPR_NAME="SH_PREFS_PRKG_APP";
 
     private static boolean IS_REGISTERED = false;
 
@@ -14,6 +15,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         if (!IS_REGISTERED){
             goToRegisterScreen();
+            MainActivity.this.finish();
+        }
+        else {
+            // go to main menu
+            MainActivity.this.finish();
         }
     }
 

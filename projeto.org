@@ -1,3 +1,7 @@
+* Dúvidas
+- Perguntar para Isidro se usar DB para armazenar nossas poucas coisas (calçada,
+  carros, usuário, etc. é OK).
+- Onde colocar variáveis globais? (ex: nome da shared preferences)
 * Nomenclatura
 *Perfil motorista:* Perfil de usuário que tem um carro e quer usar o app para estacionar em algum lugar.
 *Perfil morador:* Perfil de usuário que quer ceder sua calçada em determinados horários para alguém estacionar. 

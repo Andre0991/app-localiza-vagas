@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ProjetoCompartilhamentoVagasDispMoveis</string>
+    <string name="register_insert_name">Insira o nome</string>
+    <string name="register">Register</string>
 </resources>
