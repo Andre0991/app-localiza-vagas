@@ -20,6 +20,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtName" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/insira_o_telefone"
+        android:id="@+id/textView4" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtPhone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/insira_o_e_mail"
+        android:id="@+id/textView3" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtEmail" />
 
     <Button
         android:layout_width="match_parent"
@@ -27,13 +48,5 @@
         android:text="@string/register"
         android:id="@+id/btnRegister"
         android:onClick="register"/>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Recuperar e Travar a Tela"
-        android:id="@+id/btnRecuperar"
-        android:onClick="recuperar"/>
-
 
 </LinearLayout>

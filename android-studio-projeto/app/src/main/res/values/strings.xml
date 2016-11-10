@@ -2,4 +2,6 @@
     <string name="app_name">ProjetoCompartilhamentoVagasDispMoveis</string>
     <string name="register_insert_name">Insira o nome</string>
     <string name="register">Register</string>
+    <string name="insira_o_e_mail">Insira o e-mail</string>
+    <string name="insira_o_telefone">Insira o telefone</string>
 </resources>
