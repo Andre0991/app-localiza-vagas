@@ -5,8 +5,9 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.SharedPreferencesUtils;
+
 public class MainActivity extends AppCompatActivity {
-    public static final String SHPR_NAME="SH_PREFS_PRKG_APP";
 
 //    private static boolean IS_REGISTERED = false;
 
@@ -14,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (!this.userIsRegistered()){
+        if (SharedPreferencesUtils.hasUserRegistered(this)){
             goToRegisterScreen();
             MainActivity.this.finish();
         }
@@ -32,11 +33,6 @@ public class MainActivity extends AppCompatActivity {
     public void goToRegisterScreen() {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
-    }
-
-    public boolean userIsRegistered(){
-        SharedPreferences shPref = getSharedPreferences(MainActivity.SHPR_NAME, MODE_PRIVATE);
-        return shPref.contains("userName");
     }
 
 }

@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.SharedPreferencesUtils;
+
 public class RegisterActivity extends AppCompatActivity {
 
     @Override
@@ -20,7 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
         String txtPhone = ((EditText)findViewById(R.id.txtPhone)).getText().toString();;
         String txtEmail = ((EditText)findViewById(R.id.txtEmail)).getText().toString();;
 
-        SharedPreferences shPref = getSharedPreferences(MainActivity.SHPR_NAME, MODE_PRIVATE);
+        SharedPreferences shPref = getSharedPreferences(SharedPreferencesUtils.SHPR_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = shPref.edit();
         editor.putString("userName", txtName.toString());
         editor.putString("userPhome", txtPhone.toString());
