@@ -15,13 +15,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (SharedPreferencesUtils.hasUserRegistered(this)){
+        if (!SharedPreferencesUtils.hasUserRegistered(this)){
             goToRegisterScreen();
             MainActivity.this.finish();
         }
         else {
-            // go to main menu
-            this.goToMainScreen();
+            goToMainScreen();
         }
     }
 

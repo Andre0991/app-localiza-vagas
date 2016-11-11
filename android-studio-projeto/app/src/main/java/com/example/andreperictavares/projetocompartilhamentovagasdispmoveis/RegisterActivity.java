@@ -22,12 +22,13 @@ public class RegisterActivity extends AppCompatActivity {
         String txtPhone = ((EditText)findViewById(R.id.txtPhone)).getText().toString();;
         String txtEmail = ((EditText)findViewById(R.id.txtEmail)).getText().toString();;
 
-        SharedPreferences shPref = getSharedPreferences(SharedPreferencesUtils.SHPR_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = shPref.edit();
-        editor.putString("userName", txtName.toString());
-        editor.putString("userPhome", txtPhone.toString());
-        editor.putString("userEmail", txtEmail.toString());
-        editor.commit();
+        SharedPreferencesUtils.setUsername(this, txtName);
+//        SharedPreferences shPref = getSharedPreferences(SharedPreferencesUtils.SHPR_NAME, MODE_PRIVATE);
+//        SharedPreferences.Editor editor = shPref.edit();
+//        editor.putString("userName", txtName.toString());
+//        editor.putString("userPhome", txtPhone.toString());
+//        editor.putString("userEmail", txtEmail.toString());
+//        editor.commit();
     }
 
 }
