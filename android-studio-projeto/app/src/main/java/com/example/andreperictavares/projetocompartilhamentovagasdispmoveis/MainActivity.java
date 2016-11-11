@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goToMainScreen() {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, MainMenuActivity.class);
         startActivity(intent);
     }
 
