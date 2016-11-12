@@ -1,9 +1,8 @@
 package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.SharedPreferencesUtils;
 
@@ -20,7 +19,9 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.this.finish();
         }
         else {
-            goToMainScreen();
+//            goToMainScreen();
+            Intent intent = new Intent(this, LocationTestActivity.class);
+            startActivity(intent);
         }
     }
 
@@ -33,5 +34,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);
     }
-
 }
