@@ -1,6 +1,7 @@
 package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -20,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
 //            goToMainScreen();
-            Intent intent = new Intent(this, LocationTestActivity.class);
+            Intent intent = new Intent(this, DirectionsActivity.class);
             startActivity(intent);
         }
     }

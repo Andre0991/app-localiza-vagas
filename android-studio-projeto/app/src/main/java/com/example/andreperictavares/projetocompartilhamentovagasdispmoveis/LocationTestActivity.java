@@ -11,6 +11,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -23,6 +24,8 @@ import com.google.android.gms.location.LocationSettingsRequest;
 import com.google.android.gms.location.LocationSettingsResult;
 import com.google.android.gms.location.LocationSettingsStates;
 import com.google.android.gms.location.LocationSettingsStatusCodes;
+
+import org.w3c.dom.Text;
 
 public class LocationTestActivity extends AppCompatActivity implements
 GoogleApiClient.ConnectionCallbacks,
@@ -117,9 +120,16 @@ GoogleApiClient.OnConnectionFailedListener {
             if (mLastLocation != null) {
 //            mlatitudetext.settext(string.valueof(mlastlocation.getlatitude()));
 //            mlongitudetext.settext(string.valueof(mlastlocation.getlongitude()));
+                double latitude = mLastLocation.getLatitude();
+                double longitude = mLastLocation.getLongitude();
+
+                TextView latitudeTxtView = (TextView) findViewById(R.id.latitudeLabel);
+                latitudeTxtView.setText(Double.toString(latitude));
+                TextView longitudeTxtView = (TextView) findViewById(R.id.longitudeLabel);
+                longitudeTxtView.setText(Double.toString(longitude));
+
                 Log.d("latitude", Double.toString(mLastLocation.getLatitude()));
                 Log.d("longitude", Double.toString(mLastLocation.getLongitude()));
-                Log.d("test novo", "blau");
             }
             else {
                 // TODO: Criar dialogbox?
@@ -129,8 +139,7 @@ GoogleApiClient.OnConnectionFailedListener {
         else {
             // Show explanation for the user
             if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                    Manifest.permission.READ_CONTACTS)) {
-
+                    Manifest.permission.ACCESS_FINE_LOCATION)) {
             }
             // No explanation needed.
             else {
