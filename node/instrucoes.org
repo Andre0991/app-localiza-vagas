@@ -1,0 +1,31 @@
+* Instrucoes
+- Baixe e instale o mysql
+- Baixe e instale o node
+- Crie um DB de exemplo:
+
+#+BEGIN_EXAMPLE
+create database vagas_db;
+use vagas_db;
+create table calcadas(
+   tutorial_id INT NOT NULL AUTO_INCREMENT,
+   latitude FLOAT NOT NULL,
+   longitude FLOAT NOT NULL,
+   PRIMARY KEY ( tutorial_id )
+);
+#+END_EXAMPLE
+
+- Clone esta branch: =git checkout node_api=.
+- Execute o =index.js=: =node index.js=.
+- Envie uma requisição post para http://localhost:3000/api/v1/calcada com o
+  body abaixo (usando o Postman, por exemplo):
+
+#+BEGIN_EXAMPLE
+  {
+    "latitude": "100",
+    "longitude": "500"
+  }
+#+END_EXAMPLE
+- Veja que ela foi adicionada:
+#+BEGIN_EXAMPLE
+select * from calcadas;
+#+END_EXAMPLE
