@@ -14,7 +14,7 @@ create table calcadas(
 );
 #+END_EXAMPLE
 
-- Clone esta branch: =git checkout node_api=.
+- Muda para esta branch: =git checkout node_api=.
 - Execute o =index.js=: =node index.js=.
 - Envie uma requisição post para http://localhost:3000/api/v1/calcada com o
   body abaixo (usando o Postman, por exemplo):
