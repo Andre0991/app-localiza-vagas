@@ -69,3 +69,16 @@ O backend deve ter uma API que tem métodos para:
 ** Tela: Vezes em que usuário estacionou
 - Deve listar todas as vezes em que usuário estacionou em calçada e quanto ele vai pagar em cada vez.
 
+* Estratégias
+** Cadastro de calçada
+- Tentar primeiramente pegar o endereço com a API do nominatim e, caso o usuário
+  identifique o endereço como correto, pedir para ele completar com o número
+  correto ().
+Exemplo:
+http://nominatim.openstreetmap.org/reverse?format=json&lat=-23.6526172&lon=-46.6409271&zoom=18&addressdetails=1
+
+- Se o usuário recusar o endereço retornado pelo nominatim, usar
+  PlacesAutocompleteTextView para o usuário digitar o endereço e a gente pegar
+  os detalhes, possivelmente pedindo para o usuário colocar o número também (https://github.com/seatgeek/android-placesautocompletetextview)
+Ver também: http://chairnerd.seatgeek.com/android-places-autocomplete-textview/
+(post sobre a lib)
