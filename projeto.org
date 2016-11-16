@@ -82,7 +82,7 @@ Exemplo:
 http://nominatim.openstreetmap.org/reverse?format=json&lat=-23.6526172&lon=-46.6409271&zoom=18&addressdetails=1
   - Se o usuário aceitou o endereço sugerido, guardar diretamente as informações
     no banco de dados, incluindo também latitude e longitude.
-*** TODO autocomplete
+*** TODO autocomplete :steffan:
 Se o usuário recusar o endereço retornado pelo nominatim, usar
   PlacesAutocompleteTextView para o usuário digitar o endereço e a gente pegar
   os detalhes, possivelmente pedindo para o usuário colocar o número também (https://github.com/seatgeek/android-placesautocompletetextview)
