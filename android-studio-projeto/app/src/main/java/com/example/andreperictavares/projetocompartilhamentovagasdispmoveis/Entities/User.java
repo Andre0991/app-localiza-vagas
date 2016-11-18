@@ -12,9 +12,24 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class User {
 
-    public String getName(){
-        // SharedPreferences shPref = getSharedPreferences(MainActivity.SHPR_NAME, MODE_PRIVATE);
-        // shPref.getString("userName", "blau");
-        return "";
+    String name;
+    String surname;
+    String email;
+
+
+    public User(String name, String surname, String email, String id) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
+
 }

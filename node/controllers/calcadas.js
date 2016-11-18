@@ -1,4 +1,3 @@
-
 'use strict';
 
 var CalcadasService = require('../services/calcadas');

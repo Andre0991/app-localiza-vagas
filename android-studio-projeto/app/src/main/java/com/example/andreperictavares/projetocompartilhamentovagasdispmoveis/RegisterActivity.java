@@ -14,7 +14,6 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
     }
 
     public void register(View view){
@@ -23,6 +22,7 @@ public class RegisterActivity extends AppCompatActivity {
         String txtEmail = ((EditText)findViewById(R.id.txtEmail)).getText().toString();;
 
         SharedPreferencesUtils.setUsername(this, txtName);
+
 //        SharedPreferences shPref = getSharedPreferences(SharedPreferencesUtils.SHPR_NAME, MODE_PRIVATE);
 //        SharedPreferences.Editor editor = shPref.edit();
 //        editor.putString("userName", txtName.toString());

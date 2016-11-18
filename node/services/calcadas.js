@@ -18,15 +18,34 @@ class CalcadasService {
 
     getCalcada(calcadaId) {
         this.connection.query('SELECT * FROM calcadas WHERE id = ' + this.connection.escape(calcadaId), function (err, rows, fields) {
+            // TODO: ver se nào existe calçada
             if (err) throw err
-            var latitude = rows[0].latitude;
-            var longitude = rows[0].longitude;
-            console.log('A calçada tem latitude: ', latitude)
-            console.log('A calçada tem longitude: ', longitude)
+            if (rows.length == 0){
+                return false;
+            }
+            return makeCalcadaJsonFromRow(rows[0])
+        });
+    }
 
-        return { "latitude": latitude,
-                 "longitude": longitude
-               }
+    makeCalcadaJsonFromRow(row) {
+        var latitude = row.latitude;
+        var longitude = row.longitude;
+        console.log('A calçada tem latitude: ', latitude)
+        console.log('A calçada tem longitude: ', longitude)
+        return {
+            "latitude": latitude,
+            "longitude": longitude
+        }
+    }
+
+    getCalcadaByUserId(userId){
+        this.connection.query('SELECT * FROM calcadas WHERE user_id = ' + this.connection.escape(user_id), function (err, rows, fields) {
+            // TODO: ver se nào existe calçada
+            if (err) throw err
+            if (rows.length == 0){
+                return false;
+            }
+            return makeCalcadaJsonFromRow(rows[0])
         });
     }
 

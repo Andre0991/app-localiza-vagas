@@ -21,10 +21,17 @@ app.use(API_VERSION, apiRouter);
 var CalcadaController = require('./controllers/calcadas');
 var pc = new CalcadaController(apiRouter);
 
+var UserController = require('./controllers/users');
+var uc = new UserController(apiRouter);
+
 // seed the db for testing
+var UserService = require('./services/users');
 var CalcadasService = require('./services/calcadas');
-var p1 = CalcadasService.addCalcada({latitude: '10', longitude: '50'});
-var p2 = CalcadasService.addCalcada({latitude: '20', longitude: '60'});
-var p3 = CalcadasService.addCalcada({latitude: '30', longitude: '70'});
-
-
+var p1 = CalcadasService.addCalcada({ latitude: '10', longitude: '50' });
+var p2 = CalcadasService.addCalcada({ latitude: '20', longitude: '60' });
+var p3 = CalcadasService.addCalcada({ latitude: '30', longitude: '70' });
+UserService.addUser({ username: "andre2", password: "something_not_hashed" }, function () {
+  UserService.authUser({ username: "andre2", password: "something_not_hashed" })
+  UserService.authUser({ username: "andre2", password: "something_not_hashed_wrong" })
+  UserService.authUser({ username: "user_that_doesnt_exist", password: "something_not_hashed_wrong" })
+})
