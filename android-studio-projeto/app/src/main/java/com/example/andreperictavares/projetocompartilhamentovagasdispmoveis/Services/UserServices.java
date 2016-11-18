@@ -15,16 +15,17 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import static com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services.Service.API_ADDRESS;
+import static com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services.Service.API_VERSION;
+
 /**
  * Created by andreperictavares on 18/11/2016.
  */
 
 public class UserServices {
 
-    private static final String API_VERSION = "v1";
-
     public static void addUser(User user, String user_hash, Context ctx) {
-        String url = "http://172.31.92.56:3000/api/" + API_VERSION + "/user";
+        String url = API_ADDRESS + API_VERSION + "/user";
         final String body = new Gson().toJson(user);
         StringRequest req = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
