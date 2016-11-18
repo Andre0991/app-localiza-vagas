@@ -29,11 +29,11 @@ class UserService {
                         var usuario = { username: info.username, user_hash: hash }
                         var query = that.connection.query('INSERT INTO usuarios SET ?', usuario, function (err, result) {
                             if (err) {
-                                console.log("erro ao inserir usuário!");
+                                console.log("Error when inserting user.");
                                 throw err;
                             }
                             console.log(query.sql);
-                            console.log("usuário adicionado");
+                            console.log("User added.");
                             // TODO: true correto?
                             callback(true)
                         });

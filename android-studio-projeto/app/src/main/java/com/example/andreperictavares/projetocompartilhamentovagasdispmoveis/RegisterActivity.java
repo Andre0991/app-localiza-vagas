@@ -1,11 +1,12 @@
 package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis;
 
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.User;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services.UserServices;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.SharedPreferencesUtils;
 
 public class RegisterActivity extends AppCompatActivity {
@@ -17,18 +18,16 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     public void register(View view){
+        String txtUsername  = ((EditText)findViewById(R.id.txtUsername)).getText().toString();
+        String txtPassword  = ((EditText)findViewById(R.id.txtName)).getText().toString();
         String txtName  = ((EditText)findViewById(R.id.txtName)).getText().toString();
-        String txtPhone = ((EditText)findViewById(R.id.txtPhone)).getText().toString();;
+        String txtSurname = ((EditText)findViewById(R.id.txtSobrenome)).getText().toString();;
         String txtEmail = ((EditText)findViewById(R.id.txtEmail)).getText().toString();;
 
-        SharedPreferencesUtils.setUsername(this, txtName);
-
-//        SharedPreferences shPref = getSharedPreferences(SharedPreferencesUtils.SHPR_NAME, MODE_PRIVATE);
-//        SharedPreferences.Editor editor = shPref.edit();
-//        editor.putString("userName", txtName.toString());
-//        editor.putString("userPhome", txtPhone.toString());
-//        editor.putString("userEmail", txtEmail.toString());
-//        editor.commit();
+        User user = new User(txtUsername, txtPassword, txtName, txtSurname, txtEmail);
+        UserServices.addUser(user, txtPassword, this);
+        // TODO: descomentar após teste!
+//        SharedPreferencesUtils.setUsername(this, txtName);
     }
 
 }
