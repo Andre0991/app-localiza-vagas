@@ -24,17 +24,23 @@ import java.util.List;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    final EditText editTxtUsername = (EditText)findViewById(R.id.txtUsername);
-    final EditText editTxtPassword = (EditText)findViewById(R.id.txtPassword);
-    final EditText editTxtFirstName = (EditText)findViewById(R.id.txtName);
-    final EditText editTxtSurname = (EditText)findViewById(R.id.txtSobrenome);
-    final EditText editTxtEmail = (EditText)findViewById(R.id.txtEmail);
+    EditText editTxtUsername;
+    EditText editTxtPassword;
+    EditText editTxtFirstName;
+    EditText editTxtSurname;
+    EditText editTxtEmail;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        editTxtUsername = (EditText)findViewById(R.id.txtUsername);
+        editTxtPassword = (EditText)findViewById(R.id.txtPassword);
+        editTxtFirstName = (EditText)findViewById(R.id.txtName);
+        editTxtSurname = (EditText)findViewById(R.id.txtSobrenome);
+        editTxtEmail = (EditText)findViewById(R.id.txtEmail);
 
         addListeners();
     }
@@ -80,7 +86,6 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-
         User user = new User(txtUsername, txtPassword, txtFirstName, txtSurname, txtEmail);
         UserServices.addUser(user, txtPassword, this, new VolleyCallback() {
             @Override
@@ -89,6 +94,7 @@ public class RegisterActivity extends AppCompatActivity {
                 SharedPreferencesUtils.setPassword(RegisterActivity.this, txtPassword);
                 Intent intent = new Intent(RegisterActivity.this, MainMenuActivity.class);
                 startActivity(intent);
+                RegisterActivity.this.finish();
             }
         });
     }
