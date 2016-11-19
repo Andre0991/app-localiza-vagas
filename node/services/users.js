@@ -22,23 +22,37 @@ class UserService {
             return false;
         }
         this.userExists(info.username, function (rows) {
-            // não existe
+            // usuário não existe
             if (rows.length == 0) {
-                bcrypt.genSalt(10, function (err, salt) {
-                    bcrypt.hash(info.password, salt, function (err, hash) {
-                        var usuario = { username: info.username, user_hash: hash }
-                        var query = that.connection.query('INSERT INTO usuarios SET ?', usuario, function (err, result) {
-                            if (err) {
-                                console.log("Error when inserting user.");
-                                throw err;
-                            }
-                            console.log(query.sql);
-                            console.log("User added.");
-                            // TODO: true correto?
-                            callback(null, true)
+                that.emailExists(info.email, function (emailRows) {
+                    // não existe usuário com esse email
+                    if (emailRows.length == 0) {
+                        bcrypt.genSalt(10, function (err, salt) {
+                            bcrypt.hash(info.password, salt, function (err, hash) {
+                                var usuario = {
+                                    username: info.username,
+                                    user_hash: hash,
+                                    email: info.email,
+                                    first_name: info.name,
+                                    surname: info.surname
+                                }
+                                var query = that.connection.query('INSERT INTO usuarios SET ?', usuario, function (err, result) {
+                                    if (err) {
+                                        console.log("Error when inserting user.");
+                                        throw err;
+                                    }
+                                    console.log(query.sql);
+                                    console.log("User added.");
+                                    // TODO: true correto?
+                                    callback(null, true)
+                                });
+                            });
                         });
-                    });
-                });
+
+                    } else {
+                        callback(new Error("Já existe usuário registrado com este e-mail."))
+                    }
+                })
             }
             else {
                 callback(new Error("Usuário já existe."))
@@ -67,6 +81,17 @@ class UserService {
 
     userExists(username, callback){
         var query = this.connection.query('SELECT * FROM usuarios WHERE username = ' + mysql.escape(username), function (err, rows, fields) {
+            // TODO: tratar erro?
+            if (err) {
+                console.log("erro!");
+                throw err;
+            }
+            callback(rows);
+        });
+    }
+
+    emailExists(email, callback){
+        var query = this.connection.query('SELECT * FROM usuarios WHERE email = ' + mysql.escape(email), function (err, rows, fields) {
             // TODO: tratar erro?
             if (err) {
                 console.log("erro!");

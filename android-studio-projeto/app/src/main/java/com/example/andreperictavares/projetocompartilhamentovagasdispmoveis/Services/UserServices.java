@@ -42,13 +42,9 @@ public class UserServices {
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
                         System.out.println("something went wrong :(");
-                        if (error.networkResponse.data != null) {
-                            try {
-                                String errorBody = new String(error.networkResponse.data, "UTF-8");
-                                Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show();
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
-                            }
+                        String errorMsg = Service.getErrorResponse(error);
+                        if (errorMsg != null){
+                            Toast.makeText(ctx, errorMsg, Toast.LENGTH_LONG).show();
                         }
                     }
                 })
@@ -80,13 +76,9 @@ public class UserServices {
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
                         System.out.println("something went wrong :(");
-                        if (error.networkResponse.data != null) {
-                            try {
-                                String errorBody = new String(error.networkResponse.data, "UTF-8");
-                                Toast.makeText(ctx, errorBody, Toast.LENGTH_LONG).show();
-                            } catch (UnsupportedEncodingException e) {
-                                e.printStackTrace();
-                            }
+                        String errorMsg = Service.getErrorResponse(error);
+                        if (errorMsg != null){
+                            Toast.makeText(ctx, errorMsg, Toast.LENGTH_LONG).show();
                         }
                     }
                 })
@@ -102,3 +94,4 @@ public class UserServices {
         RequestsQueueSingleton.getInstance(ctx).addToRequestQueue(req);
     }
 }
+/**/

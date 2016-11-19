@@ -1,27 +1,21 @@
 package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities;
 
-import android.content.SharedPreferences;
-
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.MainActivity;
-
-import static android.content.Context.MODE_PRIVATE;
-
 /**
  * Created by andre.peric.tavares on 11/10/2016.
  */
 
 public class User {
 
-    String username;
-    String password;
-    String name;
-    String surname;
-    String email;
+    private String username;
+    private String password;
+    private String first_name;
+    private String surname;
+    private String email;
 
     public User(String username, String password, String name, String surname, String email) {
         this.username = username;
         this.password = password;
-        this.name = name;
+        this.first_name = name;
         this.surname = surname;
         this.email = email;
     }
@@ -31,7 +25,7 @@ public class User {
         return "User{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", name='" + name + '\'' +
+                ", first_name='" + first_name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", email='" + email + '\'' +
                 '}';
