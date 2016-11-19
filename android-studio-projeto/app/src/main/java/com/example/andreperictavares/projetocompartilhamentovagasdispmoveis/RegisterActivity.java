@@ -1,4 +1,4 @@
-package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis;
+/**/package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,6 +30,11 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editTxtSurname;
     EditText editTxtEmail;
 
+    String txtUsername;
+    String txtPassword;
+    String txtFirstName;
+    String txtSurnam;
+    String txtEmai;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +49,13 @@ public class RegisterActivity extends AppCompatActivity {
 
         addListeners();
     }
+
+
+//    @Override
+//    protected void onResume(Bundle savedInstanceState) {
+//        super.onResume();
+//        System.out.println("test");
+//    }
 
     private void addListeners() {
         final ValidationUtils validationUtils = new ValidationUtils();
@@ -112,6 +124,12 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
         return valid;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        // Não queremos perder o estado da atividade. Não faça nada.
     }
 
 }
