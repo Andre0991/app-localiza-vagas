@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public boolean authUser(){
+        return false;
+    }
+
     public void goToRegisterScreen() {
         Intent intent = new Intent(this, RegisterActivity.class);
         startActivity(intent);

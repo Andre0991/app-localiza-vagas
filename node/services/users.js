@@ -35,13 +35,13 @@ class UserService {
                             console.log(query.sql);
                             console.log("User added.");
                             // TODO: true correto?
-                            callback(true)
+                            callback(null, true)
                         });
                     });
                 });
             }
             else {
-                callback(false)
+                callback(new Error("Usuário já existe."))
             }
         })
     }
@@ -60,7 +60,7 @@ class UserService {
                 });
             }
             else {
-                console.log("autenticacao: usuario nao existe")
+                console.log("autenticacao: usuario " + info.username + " nao existe")
             }
         });
     }

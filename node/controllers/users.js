@@ -15,17 +15,19 @@ class UserController {
         // this.router.put('/players/:id', this.putPlayer.bind(this));
     }
 
+    // TODO: Confirmar se não ninguém com mesmo e-mail
     postUser(req, res) {
         var userInfo = req.body;
-        UsersService.addUser(userInfo, function (success) {
-            if (success) {
+        UsersService.addUser(userInfo, function (error, success) {
+            if (error) {
+                // res.sendStatus(500);
+                res.status(500).send(error.message);
+            }
+            else {
                 // TODO: o que colocar no header?
                 // res.setHeader('Location', '/calcadas/' + playerInfo.id);
                 res.setHeader('Location', '/users/testString');
                 res.sendStatus(200);
-            }
-            else {
-                res.sendStatus(500);
             }
         });
     }
