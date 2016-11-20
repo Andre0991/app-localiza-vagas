@@ -95,6 +95,9 @@ public class RegisterActivity extends AppCompatActivity {
             public void onSuccessResponse(String result) {
                 SharedPreferencesUtils.setUsername(RegisterActivity.this, txtFirstName);
                 SharedPreferencesUtils.setPassword(RegisterActivity.this, txtPassword);
+                SharedPreferencesUtils.setFirstName(RegisterActivity.this, txtFirstName);
+                SharedPreferencesUtils.setSurname(RegisterActivity.this, txtSurname);
+                SharedPreferencesUtils.setEmail(RegisterActivity.this, txtEmail);
                 Intent intent = new Intent(RegisterActivity.this, MainMenuActivity.class);
                 startActivity(intent);
                 RegisterActivity.this.finish();

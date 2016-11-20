@@ -4,8 +4,12 @@ import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.ParkingLocation;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.User;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services.NominatimServices;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyJsonOBJCallback;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -20,6 +24,7 @@ public class GuessParkingLocationActivity extends LocationActivity implements Go
     protected TextView bairroTextView;
     protected TextView cidadeTextView;
     protected TextView estadoTextView;
+    protected ProgressBar mProgress;
 
     private static String TAG = "GuessParkingLocation";
 
@@ -32,6 +37,7 @@ public class GuessParkingLocationActivity extends LocationActivity implements Go
         bairroTextView = (TextView) findViewById(R.id.bairro);
         cidadeTextView = (TextView) findViewById(R.id.cidade);
         estadoTextView = (TextView) findViewById(R.id.estado);
+        mProgress = (ProgressBar) findViewById(R.id.progressBar);
     }
 
     @Override
@@ -47,16 +53,12 @@ public class GuessParkingLocationActivity extends LocationActivity implements Go
                     new VolleyJsonOBJCallback() {
                         @Override
                         public void onSuccessResponse(JSONObject result) {
+                            mProgress.setVisibility(View.INVISIBLE);
                             if (gotAllMandatoryFieldsForDatabaseInsertion(result)) {
                                 updateUI(result);
                             }
                             else {
-                                // We don't have all required information.
-                                // Let the user fill it in the next acitivity.
-
-//            Intent intent = new Intent(FILL_THIS.this, MainMenuActivity.class);
-//            startActivity(intent);
-//            GuessParkingLocationActivity.this.finish();
+                                skipThisActivity();
                             }
                         }
                         @Override
@@ -65,11 +67,17 @@ public class GuessParkingLocationActivity extends LocationActivity implements Go
                     });
         }
         else {
-            // TODO: tratar?
             Log.e(TAG, "Não foi possível obter localização.");
+            skipThisActivity();
         }
     }
 
+    // TODO: complete when next activity is ready
+    private void skipThisActivity() {
+//            Intent intent = new Intent(FILL_THIS.this, MainMenuActivity.class);
+//            startActivity(intent);
+//            GuessParkingLocationActivity.this.finish();
+    }
 
     private void updateUI(JSONObject result) {
         try {
@@ -97,5 +105,21 @@ public class GuessParkingLocationActivity extends LocationActivity implements Go
             return false;
         }
         return true;
+    }
+
+    private void sendParkingLocation() {
+        String road = ruaTextView.getText().toString();
+        String suburb = bairroTextView.getText().toString();
+        String city = cidadeTextView.getText().toString();
+        String state = estadoTextView.getText().toString();
+        int number = 0;
+        ParkingLocation parkingLocation = new ParkingLocation(number,
+        road,
+        suburb,
+        city,
+        state,
+        super.mCurrentLocation.getLatitude(),
+        super.mCurrentLocation.getLongitude(),
+        User.getCurrentUser(this));
     }
 }

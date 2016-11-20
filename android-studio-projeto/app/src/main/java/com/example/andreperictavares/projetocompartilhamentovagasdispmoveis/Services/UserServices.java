@@ -29,13 +29,11 @@ public class UserServices {
         StringRequest req = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     public void onResponse(String response) {
-                        System.out.println("resposta ao tentar add usuário: " + response);
                         callback.onSuccessResponse(response);
                     }
                 },
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println("something went wrong :(");
                         String errorMsg = Service.getErrorResponse(error);
                         if (errorMsg != null){
                             Toast.makeText(ctx, errorMsg, Toast.LENGTH_LONG).show();
@@ -64,13 +62,11 @@ public class UserServices {
         StringRequest req = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
                     public void onResponse(String response) {
-                        System.out.println("resposta ao tentar add usuário: " + response);
                         callback.onSuccessResponse(response);
                     }
                 },
                 new Response.ErrorListener() {
                     public void onErrorResponse(VolleyError error) {
-                        System.out.println("something went wrong :(");
                         String errorMsg = Service.getErrorResponse(error);
                         if (errorMsg != null){
                             Toast.makeText(ctx, errorMsg, Toast.LENGTH_LONG).show();

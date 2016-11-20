@@ -1,5 +1,9 @@
 package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities;
 
+import android.content.Context;
+
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.SharedPreferencesUtils;
+
 /**
  * Created by andre.peric.tavares on 11/10/2016.
  */
@@ -18,6 +22,14 @@ public class User {
         this.first_name = name;
         this.surname = surname;
         this.email = email;
+    }
+
+    public static User getCurrentUser(Context ctx){
+        return new User(SharedPreferencesUtils.getUsername(ctx),
+                SharedPreferencesUtils.getPassword(ctx),
+                SharedPreferencesUtils.getFirstName(ctx),
+                SharedPreferencesUtils.getSurname(ctx),
+                SharedPreferencesUtils.getEmail(ctx));
     }
 
     @Override

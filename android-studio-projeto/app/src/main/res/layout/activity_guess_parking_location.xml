@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
+    xmlns:tools="http://schemas.android.com/tools"
 android:id="@+id/activity_guess_parking_location"
 android:orientation="vertical"
 android:layout_width="match_parent"
@@ -33,4 +33,17 @@ tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmov
         android:layout_height="wrap_content"
         android:text="@string/estado"
         android:id="@+id/estado" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/o_endere_o_acima_est_correto"
+        android:id="@+id/right_address_question" />
+
+    <ProgressBar
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar" />
+
 </LinearLayout>

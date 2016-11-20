@@ -11,4 +11,5 @@
     <string name="bairro">Bairro</string>
     <string name="cidade">cidade</string>
     <string name="estado">estado</string>
+    <string name="o_endere_o_acima_est_correto">O endereço acima está correto?</string>
 </resources>
