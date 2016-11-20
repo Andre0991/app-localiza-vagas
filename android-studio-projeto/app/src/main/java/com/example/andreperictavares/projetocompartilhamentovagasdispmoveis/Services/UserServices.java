@@ -7,17 +7,10 @@ import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.User;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.RequestsQueueSingleton;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyCallback;
 import com.google.gson.Gson;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.UnsupportedEncodingException;
 
 import static com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services.Service.API_ADDRESS;
 import static com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services.Service.API_VERSION;
@@ -29,6 +22,7 @@ import static com.example.andreperictavares.projetocompartilhamentovagasdispmove
 public class UserServices {
 
     // TODO: add boolean return
+    // TODO: usar uri builder
     public static void addUser(User user, String user_hash, final Context ctx, final VolleyCallback callback) {
         String url = API_ADDRESS + API_VERSION + "/user";
         final String body = new Gson().toJson(user);
@@ -63,6 +57,7 @@ public class UserServices {
 
     // TODO: add boolean return
     // TODO: continuar
+    // TODO: usar uri builder
     public static void authUser(User user, String user_hash, final Context ctx, final VolleyCallback callback) {
         String url = API_ADDRESS + API_VERSION + "/user";
         final String body = new Gson().toJson(user);

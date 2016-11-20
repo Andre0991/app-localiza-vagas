@@ -1,4 +1,4 @@
-package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils;
+package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services;
 
 import android.content.Context;
 
@@ -11,7 +11,7 @@ import com.android.volley.toolbox.Volley;
  */
 
 // Excerpts from https://developer.android.com/training/volley/requestqueue.html#singleton
-public class RequestsQueueSingleton {
+class RequestsQueueSingleton {
     private static RequestsQueueSingleton mInstance;
     private RequestQueue mRequestQueue;
     private static Context mCtx;
@@ -21,18 +21,18 @@ public class RequestsQueueSingleton {
         mRequestQueue = getRequestQueue();
     }
 
-    public static synchronized RequestsQueueSingleton getInstance(Context context) {
+    static synchronized RequestsQueueSingleton getInstance(Context context) {
         if (mInstance == null) {
             mInstance = new RequestsQueueSingleton(context);
         }
         return mInstance;
     }
 
-    public <T> void addToRequestQueue(Request<T> req) {
+    <T> void addToRequestQueue(Request<T> req) {
         getRequestQueue().add(req);
     }
 
-    public RequestQueue getRequestQueue() {
+    private RequestQueue getRequestQueue() {
         if (mRequestQueue == null) {
             mRequestQueue = Volley.newRequestQueue(mCtx.getApplicationContext());
         }

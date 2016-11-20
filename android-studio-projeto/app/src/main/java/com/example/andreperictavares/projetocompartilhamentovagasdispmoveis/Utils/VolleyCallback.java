@@ -6,4 +6,5 @@ package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Uti
 
 public interface VolleyCallback {
     void onSuccessResponse(String result);
+    void onErrorResponse(String result);
 }

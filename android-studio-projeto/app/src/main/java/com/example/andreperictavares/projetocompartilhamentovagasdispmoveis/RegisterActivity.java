@@ -30,12 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
     EditText editTxtSurname;
     EditText editTxtEmail;
 
-    String txtUsername;
-    String txtPassword;
-    String txtFirstName;
-    String txtSurnam;
-    String txtEmai;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -108,6 +102,11 @@ public class RegisterActivity extends AppCompatActivity {
                 startActivity(intent);
                 RegisterActivity.this.finish();
             }
+
+            @Override
+            public void onErrorResponse(String result) {
+
+            }
         });
     }
 
@@ -125,7 +124,6 @@ public class RegisterActivity extends AppCompatActivity {
         }
         return valid;
     }
-
 
     @Override
     public void onBackPressed() {
