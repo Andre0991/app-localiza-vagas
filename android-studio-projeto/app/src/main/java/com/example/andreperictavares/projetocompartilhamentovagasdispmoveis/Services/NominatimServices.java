@@ -8,7 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyCallback;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyJsonOBJCallback;
 
 import org.json.JSONObject;
 
@@ -25,7 +25,7 @@ public class NominatimServices {
     private String AUTHORITY = "nominatim.openstreetmap.org";
 
 
-    public void getLocationDetails(Context ctx, Double lat, Double lon, final VolleyCallback callback){
+    public void getLocationDetails(Context ctx, Double lat, Double lon, final VolleyJsonOBJCallback callback){
 
         // http://stackoverflow.com/questions/19167954/use-uri-builder-in-android-or-create-url-with-variables
         Uri.Builder builder = new Uri.Builder();
@@ -45,12 +45,14 @@ public class NominatimServices {
                     @Override
                     public void onResponse(JSONObject response) {
                         Log.d(TAG, response.toString());
+                        callback.onSuccessResponse(response);
                     }
                 }, new Response.ErrorListener() {
-
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // TODO: tratar erro (ex: internet off)
+                        // TODO: string retornada pode ser inútil
+                        callback.onErrorResponse(error.toString());
                         Log.d(TAG, "erro!");
                         // TODO Auto-generated method stub
 

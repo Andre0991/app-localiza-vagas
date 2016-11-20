@@ -4,7 +4,7 @@ package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Uti
  * Created by andreperictavares on 18/11/2016.
  */
 
-public interface VolleyCallback {
+public interface VolleyStringCallback {
     void onSuccessResponse(String result);
     void onErrorResponse(String result);
 }

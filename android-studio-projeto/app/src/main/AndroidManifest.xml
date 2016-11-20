@@ -22,7 +22,8 @@
         <activity android:name=".MainMenuActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LocationTestActivity" />
-        <activity android:name=".GuessMyParkingLocationActivity"></activity>
+        <activity android:name=".LocationActivity" />
+        <activity android:name=".GuessParkingLocationActivity"></activity>
     </application>
 
 </manifest>

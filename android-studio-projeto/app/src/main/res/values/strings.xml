@@ -7,4 +7,8 @@
     <string name="title_activity_location_test">LocationTestActivity</string>
     <string name="username">Insira o nome de usuário.</string>
     <string name="escolha_sua_senha">Escolha sua senha</string>
+    <string name="rua">Rua</string>
+    <string name="bairro">Bairro</string>
+    <string name="cidade">cidade</string>
+    <string name="estado">estado</string>
 </resources>

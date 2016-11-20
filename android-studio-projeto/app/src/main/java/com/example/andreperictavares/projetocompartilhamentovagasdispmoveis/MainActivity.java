@@ -20,8 +20,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else {
 //            goToMainScreen();
-            Intent intent = new Intent(this, GuessMyParkingLocationActivity.class);
-//            Intent intent = new Intent(this, LocationTestActivity.class);
+//            Intent intent = new Intent(this, LocationActivity.class);
+            Intent intent = new Intent(this, GuessParkingLocationActivity.class);
             startActivity(intent);
         }
     }

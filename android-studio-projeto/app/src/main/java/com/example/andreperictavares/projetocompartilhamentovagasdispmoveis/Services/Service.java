@@ -13,7 +13,8 @@ import java.io.UnsupportedEncodingException;
 class Service {
 
     public static final String API_VERSION = "v1";
-    public static final String API_ADDRESS = "http://172.31.92.56:3000/api/";
+//    public static final String API_ADDRESS = "http://172.31.92.56:3000/api/";
+    public static final String API_ADDRESS = "http://192.168.0.101:3000/api/";
 
 
     public static String getErrorResponse(VolleyError error){

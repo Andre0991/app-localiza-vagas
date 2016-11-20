@@ -12,11 +12,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services.NominatimServices;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyCallback;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
@@ -29,7 +26,7 @@ import com.google.android.gms.location.LocationSettingsStatusCodes;
 import com.google.android.gms.location.LocationListener;
 
 // excertos de https://github.com/googlesamples/android-play-location/blob/master/LocationSettings/app/src/main/java/com/google/android/gms/location/sample/locationsettings/MainActivity.java
-public class GuessMyParkingLocationActivity extends AppCompatActivity implements
+public class LocationActivity extends AppCompatActivity implements
         GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener,
         LocationListener,
@@ -84,17 +81,24 @@ public class GuessMyParkingLocationActivity extends AppCompatActivity implements
     private static final int MY_FINE_LOCATION_PERMISSION_REQUEST = 0;
 
 
+    /**
+     * Tracks the status of the location updates request. Value changes when the user presses the
+     * Start Updates and Stop Updates buttons.
+     */
+    protected Boolean mRequestingLocationUpdates;
+
     // UI
-    protected TextView mLatitudeTextView;
-    protected TextView mLongitudeTextView;
+//    protected TextView mLatitudeTextView;
+//    protected TextView mLongitudeTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_guess_my_parking_location);
+        setContentView(R.layout.location_activity);
 
-        mLatitudeTextView = (TextView) findViewById(R.id.latitude_text);
-        mLongitudeTextView = (TextView) findViewById(R.id.longitude_text);
+//        mLatitudeTextView = (TextView) findViewById(R.id.latitude_text);
+//        mLongitudeTextView = (TextView) findViewById(R.id.longitude_text);
+        mRequestingLocationUpdates = false;
 
         buildGoogleApiClient();
         createLocationRequest();
@@ -133,20 +137,6 @@ public class GuessMyParkingLocationActivity extends AppCompatActivity implements
                     mGoogleApiClient);
             if (mCurrentLocation != null) {
                 updateUI();
-                // TODO: passar para lugar correto
-                NominatimServices nominatimServices = new NominatimServices();
-                Log.i(TAG, "Obtendo detalhes sobre localização no Nominatim");
-                nominatimServices.getLocationDetails(this,
-                        mCurrentLocation.getLatitude(),
-                        mCurrentLocation.getLongitude(),
-                        new VolleyCallback() {
-                    @Override
-                    public void onSuccessResponse(String result) {
-                    }
-                    @Override
-                    public void onErrorResponse(String result) {
-                    }
-                });
             }
             else {
                 // TODO: Criar dialogbox?
@@ -166,7 +156,9 @@ public class GuessMyParkingLocationActivity extends AppCompatActivity implements
                         MY_FINE_LOCATION_PERMISSION_REQUEST);
             }
         }
-        startLocationUpdates();
+        if (mRequestingLocationUpdates) {
+            startLocationUpdates();
+        }
     }
 
 
@@ -260,10 +252,10 @@ public class GuessMyParkingLocationActivity extends AppCompatActivity implements
 
     private void updateUI() {
         if (mCurrentLocation != null) {
-            mLatitudeTextView.setText(String.format("%s: %f", "latitude",
-                    mCurrentLocation.getLatitude()));
-            mLongitudeTextView.setText(String.format("%s: %f", "longitude",
-                    mCurrentLocation.getLongitude()));
+//            mLatitudeTextView.setText(String.format("%s: %f", "latitude",
+//                    mCurrentLocation.getLatitude()));
+//            mLongitudeTextView.setText(String.format("%s: %f", "longitude",
+//                    mCurrentLocation.getLongitude()));
         }
         else {
             Log.i(TAG, "Location is null when updating UI..");
@@ -293,7 +285,7 @@ public class GuessMyParkingLocationActivity extends AppCompatActivity implements
                         status.startResolutionForResult(
                                 // TODO: docs says "OuterClass.this"
                                 // OuterClass.this,
-                                GuessMyParkingLocationActivity.this,
+                                LocationActivity.this,
                                 REQUEST_CHECK_SETTINGS);
                     }
                     catch (IntentSender.SendIntentException e){
@@ -362,7 +354,7 @@ public class GuessMyParkingLocationActivity extends AppCompatActivity implements
         // connection to GoogleApiClient intact.  Here, we resume receiving
         // location updates if the user has requested them.
 
-        if (mGoogleApiClient.isConnected()) {
+        if (mGoogleApiClient.isConnected() && mRequestingLocationUpdates) {
             Log.d(TAG, "Google Services API is connected - restarting updates.");
             startLocationUpdates();
         }

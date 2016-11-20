@@ -1,6 +1,5 @@
 /**/package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,9 +13,7 @@ import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Enti
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services.UserServices;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.SharedPreferencesUtils;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.ValidationUtils;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyCallback;
-
-import org.w3c.dom.Text;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyStringCallback;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -93,7 +90,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         User user = new User(txtUsername, txtPassword, txtFirstName, txtSurname, txtEmail);
-        UserServices.addUser(user, txtPassword, this, new VolleyCallback() {
+        UserServices.addUser(user, txtPassword, this, new VolleyStringCallback() {
             @Override
             public void onSuccessResponse(String result) {
                 SharedPreferencesUtils.setUsername(RegisterActivity.this, txtFirstName);
