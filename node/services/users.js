@@ -2,6 +2,8 @@
 
 var bcrypt = require('bcryptjs');
 var mysql = require('mysql')
+var jwt = require('jwt-simple');
+var secrets = require('../config/secrets');
 
 
 class UserService {
@@ -33,7 +35,7 @@ class UserService {
                                     username: info.username,
                                     user_hash: hash,
                                     email: info.email,
-                                    first_name: info.name,
+                                    first_name: info.first_name,
                                     surname: info.surname
                                 }
                                 var query = that.connection.query('INSERT INTO usuarios SET ?', usuario, function (err, result) {
@@ -60,7 +62,7 @@ class UserService {
         })
     }
 
-    authUser(info) {
+    authUser(info, callback) {
         if (!info) {
             return false;
         }
@@ -70,15 +72,27 @@ class UserService {
                 bcrypt.compare(info.password, rows[0].user_hash, function (err, res) {
                     console.log("hash confere?");
                     console.log(res);
+                    if (res == true) {
+                        // trocar info.usarname para objeto completo de usuario
+                        var token = jwt.encode(info.username, secrets.jwt_secret);
+                        // return the information including token as JSON
+                        callback({ success: true, token: 'JWT ' + token });
+                    }
+                    else {
+                        callback({ success: false, message: 'Wrong password'});
+                    }
+                    // TODO: precisa retornar?
                     return res;
                 });
             }
             else {
                 console.log("autenticacao: usuario " + info.username + " nao existe")
+                callback({ success: false, message: 'User does not exist' });
             }
         });
     }
 
+    // TODO: retornar objeto user em vez de row?
     userExists(username, callback){
         var query = this.connection.query('SELECT * FROM usuarios WHERE username = ' + mysql.escape(username), function (err, rows, fields) {
             // TODO: tratar erro?

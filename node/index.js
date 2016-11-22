@@ -7,6 +7,10 @@ var bodyParser = require('body-parser');
 // it could have been raw, text or urlencoded too
 app.use(bodyParser.json());
 
+// var passport	= require('passport');
+// app.use(passport.initialize());
+
+
 var API_VERSION = '/api/v1';
 
 // locally
@@ -34,8 +38,16 @@ var CalcadasService = require('./services/calcadas');
 var p1 = CalcadasService.addCalcada({ latitude: '10', longitude: '50' });
 var p2 = CalcadasService.addCalcada({ latitude: '20', longitude: '60' });
 var p3 = CalcadasService.addCalcada({ latitude: '30', longitude: '70' });
-UserService.addUser({ username: "andre_default", password: "something_not_hashed" }, function () {
-  UserService.authUser({ username: "andre_default", password: "something_not_hashed" })
-  UserService.authUser({ username: "andre2", password: "something_not_hashed_wrong" })
-  UserService.authUser({ username: "user_that_doesnt_exist", password: "something_not_hashed_wrong" })
+UserService.addUser({ username: "andre_default", password: "something_not_hashed", email: "andrept@gmail.com", first_name: "Andre", surname: "Peric Tavares"}, function () {
+  UserService.authUser({ username: "andre_default", password: "something_not_hashed"}, function(res) {
+    // mandar token a usuario
+  });
+  // UserService.authUser({ username: "andre_not_exists", password: "something_not_hashed"})
 })
+
+var passport	= require('passport');
+require('./config/passport')(passport);
+apiRouter.post('/test', passport.authenticate('jwt', { session: false }), function(req, res) {
+  res.status(200).send("oi!!!!");
+    // res.send(req.username);
+  }); 

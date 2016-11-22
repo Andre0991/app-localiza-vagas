@@ -14,6 +14,6 @@ public class MainMenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         TextView wellcomeText = (TextView)findViewById(R.id.wellcome);
-        wellcomeText.setText("Seja bem vindo, " + SharedPreferencesUtils.getUsername(this));
+        wellcomeText.setText("Seja bem vindo, " + SharedPreferencesUtils.getFirstName(this));
     }
 }
