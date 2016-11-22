@@ -4,13 +4,10 @@ var UsersService = require('../services/users');
 var jwt = require('jwt-simple');
 var secrets = require('../config/secrets');
 
-// var passport	= require('passport');
-var passport	= require('passport');
-require('../config/passport')(passport);
-
 class UserController {
-    constructor(router) {
+    constructor(router, passport) {
         this.router = router;
+        this.passport = passport;
         this.registerRoutes();
     }
 
@@ -19,7 +16,7 @@ class UserController {
         // this.router.get('/players/:id', this.getSinglePlayer.bind(this));
         this.router.post('/user', this.postUser.bind(this));
         this.router.post('/auth', this.authUser.bind(this));
-        this.router.post('/member', this.memberTest.bind(this));
+        this.router.post('/member', this.passport.authenticate('jwt', { session: false }), this.memberTest.bind(this));
         // this.router.put('/players/:id', this.putPlayer.bind(this));
     }
 
@@ -53,23 +50,7 @@ class UserController {
     }
 
     memberTest(req, res) {
-        console.log("oi")
-        passport.authenticate('jwt', { session: false }),
-            function (req, res) {
-                var token = getToken(req.headers);
-                if (token) {
-                    var decoded = jwt.decode(token, secrets.jwt_secret);
-                    var userInfo = req.body;
-                    UsersService.userExists(userInfo.username, function (resp) {
-                        if (resp.success == true) {
-                            res.status(200).send(resp);
-                        }
-                        else {
-                            res.status(500).send(resp)
-                        }
-                    });
-                }
-            }
+        res.status(200).send("Agora vai!");
     }
 
     // from https://devdactic.com/restful-api-user-authentication-1/
@@ -85,7 +66,6 @@ class UserController {
             return null;
         }
     }
-
 }
 
 module.exports = UserController;

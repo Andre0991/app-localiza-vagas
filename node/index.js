@@ -7,9 +7,8 @@ var bodyParser = require('body-parser');
 // it could have been raw, text or urlencoded too
 app.use(bodyParser.json());
 
-// var passport	= require('passport');
-// app.use(passport.initialize());
-
+var passport	= require('passport');
+require('./config/passport')(passport);
 
 var API_VERSION = '/api/v1';
 
@@ -26,11 +25,12 @@ var server = app.listen(3000);
 
 app.use(API_VERSION, apiRouter);
 
+var UserController = require('./controllers/users');
+var uc = new UserController(apiRouter, passport);
+
 var CalcadaController = require('./controllers/calcadas');
 var pc = new CalcadaController(apiRouter);
 
-var UserController = require('./controllers/users');
-var uc = new UserController(apiRouter);
 
 // seed the db for testing
 var UserService = require('./services/users');
@@ -45,9 +45,6 @@ UserService.addUser({ username: "andre_default", password: "something_not_hashed
   // UserService.authUser({ username: "andre_not_exists", password: "something_not_hashed"})
 })
 
-var passport	= require('passport');
-require('./config/passport')(passport);
 apiRouter.post('/test', passport.authenticate('jwt', { session: false }), function(req, res) {
   res.status(200).send("oi!!!!");
-    // res.send(req.username);
   }); 
