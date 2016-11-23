@@ -1,19 +1,36 @@
 'use strict';
 
 var CalcadasService = require('../services/calcadas');
+var jwt = require('jwt-simple');
+var secrets = require('../config/secrets');
+
 
 class CalcadasController {
-    constructor(router) {
+    constructor(router, passport) {
         this.router = router;
+        this.passport = passport;
         this.registerRoutes();
     }
 
     registerRoutes() {
         // this.router.get('/players', this.getPlayers.bind(this));
         // this.router.get('/players/:id', this.getSinglePlayer.bind(this));
-        this.router.post('/calcada', this.postCalcada.bind(this));
+        this.router.post('/calcada', this.passport.authenticate('jwt', { session: false }), this.getCalcada.bind(this));
         // this.router.put('/players/:id', this.putPlayer.bind(this));
     }
+
+    getCalcada(req, res) {
+        var calcadaInfo = req.body
+        CalcadasService.getOne(calcadaInfo.numero, calcadaInfo.rua, calcadaInfo.cep, function (resp) {
+            if (resp.success == true) {
+                res.status(200).send(resp);
+            }
+            else {
+                res.status(500).send(resp)
+            }
+        });
+    }
+
 
     postCalcada(req, res) {
         var calcadaInfo = req.body;

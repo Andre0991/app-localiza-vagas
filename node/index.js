@@ -29,7 +29,7 @@ var UserController = require('./controllers/users');
 var uc = new UserController(apiRouter, passport);
 
 var CalcadaController = require('./controllers/calcadas');
-var pc = new CalcadaController(apiRouter);
+var pc = new CalcadaController(apiRouter, passport);
 
 
 // seed the db for testing

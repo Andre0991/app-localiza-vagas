@@ -53,19 +53,6 @@ class UserController {
         res.status(200).send("Agora vai!");
     }
 
-    // from https://devdactic.com/restful-api-user-authentication-1/
-    getToken(headers) {
-        if (headers && headers.authorization) {
-            var parted = headers.authorization.split(' ');
-            if (parted.length === 2) {
-                return parted[1];
-            } else {
-                return null;
-            }
-        } else {
-            return null;
-        }
-    }
 }
 
 module.exports = UserController;

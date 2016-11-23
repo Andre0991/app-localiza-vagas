@@ -16,6 +16,41 @@ class CalcadasService {
         this.connection.connect()
     }
 
+    rowToCalcada(row) {
+        return {
+            calcada_id: row.calcada_id,
+            numero : row.numero,
+            cep : row.cep,
+            rua : row.rua,
+            latitude : row.latitude,
+            longitude : row.longitude,
+            user: row.user
+        }
+    }
+
+    getOne(numero, rua, cep, callback) {
+        var that = this;
+        var query = this.connection.query(
+            'SELECT * FROM calcadas WHERE numero = ' + mysql.escape(numero) + ' and ' +
+            'rua = ' + mysql.escape(rua) + ' and ' +
+            'cep = ' + mysql.escape(cep),
+            function (err, rows, fields) {
+                // TODO: tratar erro?
+                if (err) {
+                    console.log({success: 'false', message: err.message});
+                    throw err;
+                }
+                if (rows.length != 0) {
+                    var calcada = that.rowToCalcada(rows[0]);
+                    callback({success: 'true', calcada: calcada});
+                }
+                else {
+                    callback({ sucess: 'false', message: 'Esta calçada não existe.' });
+                }
+            });
+            console.log(query.sql);
+    }
+
     getCalcada(calcadaId) {
         this.connection.query('SELECT * FROM calcadas WHERE id = ' + this.connection.escape(calcadaId), function (err, rows, fields) {
             // TODO: ver se nào existe calçada
