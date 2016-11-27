@@ -15,14 +15,15 @@ class CalcadasController {
     registerRoutes() {
         // this.router.get('/players', this.getPlayers.bind(this));
         // this.router.get('/players/:id', this.getSinglePlayer.bind(this));
-        this.router.post('/calcada', this.passport.authenticate('jwt', { session: false }), this.getCalcada.bind(this));
+        this.router.get('/calcada', this.passport.authenticate('jwt', { session: false }), this.getCalcada.bind(this));
+        this.router.post('/calcada', this.passport.authenticate('jwt', { session: false }), this.postCalcada.bind(this));
         // this.router.put('/players/:id', this.putPlayer.bind(this));
     }
 
     getCalcada(req, res) {
         var calcadaInfo = req.body
         CalcadasService.getOne(calcadaInfo.numero, calcadaInfo.rua, calcadaInfo.cep, function (resp) {
-            if (resp.success == true) {
+            if (resp.status == "success") {
                 res.status(200).send(resp);
             }
             else {
@@ -31,17 +32,16 @@ class CalcadasController {
         });
     }
 
-
     postCalcada(req, res) {
-        var calcadaInfo = req.body;
-        if (CalcadasService.addCalcada(calcadaInfo)) {
-            // TODO: o que colocar no header? latitude e longitude?
-            // res.setHeader('Location', '/calcadas/' + playerInfo.id);
-            res.setHeader('Location', '/calcadas/testString');
-            res.sendStatus(200);
-        } else {
-            res.sendStatus(500);
-        }
+        var calcadaInfo = req.body.data;
+        CalcadasService.addCalcada(calcadaInfo, function (resp) {
+            if (resp.status == "success") {
+                res.status(200).send(resp);
+            }
+            else {
+                res.status(500).send(resp)
+            }
+        });
     }
 
     getPlayers(req, res) {
@@ -81,8 +81,6 @@ class CalcadasController {
             }
         }
     }
-
-
 }
 
 module.exports = CalcadasController;

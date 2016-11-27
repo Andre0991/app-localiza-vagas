@@ -37,15 +37,15 @@ class CalcadasService {
             function (err, rows, fields) {
                 // TODO: tratar erro?
                 if (err) {
-                    console.log({success: 'false', message: err.message});
+                    console.log({status: 'error', message: err.message});
                     throw err;
                 }
                 if (rows.length != 0) {
                     var calcada = that.rowToCalcada(rows[0]);
-                    callback({success: 'true', calcada: calcada});
+                    callback({status: 'success', calcada: calcada});
                 }
                 else {
-                    callback({ sucess: 'false', message: 'Esta calçada não existe.' });
+                    callback({ status: 'fail', message: 'Esta calçada não existe.' });
                 }
             });
             console.log(query.sql);
@@ -84,21 +84,32 @@ class CalcadasService {
         });
     }
 
-    addCalcada(info) {
+    addCalcada(info, callback) {
+        // TODO: lol
+        var that = this;
         // TODO: prevenir que duas calcadas sejam adicionadas em lugares proximos!
         if (!info) {
             return false;
         }
-
-        var calcada = {latitude: info.latitude, longitude: info.longitude}
-        var query = this.connection.query('INSERT INTO calcadas SET ?', calcada, function (err, result) {
+        this.getOne(info.numero, info.rua, info.cep, function (resp) {
+            // calcada ja existe
+            if (resp.status == "success") {
+                callback({"status": "fail", message: "Já existe calçada cadastrada nesse endereço."});
+            // TODO: usar status mais específico para inficar que calçada não existe?
+            }
+            else if (resp.status == "fail") {
+                var calcada = {latitude: info.latitude, longitude: info.longitude, cep: info.cep, numero: info.numero, rua: info.rua};
+                var query = that.connection.query('INSERT INTO calcadas SET ?', calcada, function (err, result) {
+                    if (err){
+                        callback({status: "error", "message": err.message});
+                    }
+                    else {
+                        callback({"status": "success"});
+                    }
+                });
+                console.log(query.sql);
+            }
         });
-
-        // TODO: deletar depois de testar
-        console.log(query.sql);
-
-
-        return true;
     }
 
     updatePlayer(playerId, info) {

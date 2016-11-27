@@ -12,18 +12,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainMenuActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".LocationTestActivity" />
-        <activity android:name=".LocationActivity" />
-        <activity android:name=".GuessParkingLocationActivity"></activity>
+        <activity android:name=".Activities.MainMenuActivity" />
+        <activity android:name=".Activities.RegisterActivity" />
+        <activity android:name=".Activities.LocationActivity" />
+        <activity android:name=".Activities.GuessParkingLocationActivity"></activity>
     </application>
 
 </manifest>

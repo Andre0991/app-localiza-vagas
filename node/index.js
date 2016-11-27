@@ -35,12 +35,23 @@ var pc = new CalcadaController(apiRouter, passport);
 // seed the db for testing
 var UserService = require('./services/users');
 var CalcadasService = require('./services/calcadas');
-var p1 = CalcadasService.addCalcada({ latitude: '10', longitude: '50' });
-var p2 = CalcadasService.addCalcada({ latitude: '20', longitude: '60' });
-var p3 = CalcadasService.addCalcada({ latitude: '30', longitude: '70' });
+var p1 = CalcadasService.addCalcada({ latitude: '10', longitude: '50' }, function () {});
+var p2 = CalcadasService.addCalcada({ latitude: '20', longitude: '60' }, function () {});
+var p3 = CalcadasService.addCalcada({ latitude: '30', longitude: '70' }, function () {});
 UserService.addUser({ username: "andre_default", password: "something_not_hashed", email: "andrept@gmail.com", first_name: "Andre", surname: "Peric Tavares"}, function () {
   UserService.authUser({ username: "andre_default", password: "something_not_hashed"}, function(res) {
     // mandar token a usuario
+    UserService.getOne("andre_nao_existe", function(resp) {
+      if (resp.status == "success") {
+        console.log("sucesso ao getOne! " + resp.data);
+      }
+      else if (resp.status == "fail") {
+        console.log("fail! motivo: " + resp.message);
+      }
+      else if (resp.status == "error") {
+        console.log("error! motivo: " + resp.message);
+      }
+    });
   });
   // UserService.authUser({ username: "andre_not_exists", password: "something_not_hashed"})
 })

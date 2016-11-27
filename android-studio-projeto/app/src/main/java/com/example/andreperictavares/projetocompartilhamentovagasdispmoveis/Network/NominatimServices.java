@@ -1,4 +1,4 @@
-package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services;
+package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network;
 
 import android.content.Context;
 import android.net.Uri;
@@ -64,7 +64,7 @@ public class NominatimServices {
                 Map<String, String> headers = new HashMap<>();
                 headers.put("User-agent", USER_AGENT);
                 return headers;
-    }
+            }
         };
         RequestsQueueSingleton.getInstance(ctx).addToRequestQueue(jsObjRequest);
     }

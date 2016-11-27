@@ -1,4 +1,4 @@
-package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis;
+package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.R;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;

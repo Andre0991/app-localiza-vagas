@@ -1,4 +1,4 @@
-package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services;
+package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network;
 
 import android.content.Context;
 

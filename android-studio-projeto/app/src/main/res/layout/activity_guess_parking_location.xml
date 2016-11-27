@@ -9,7 +9,7 @@ android:paddingBottom="0dp"
 android:paddingLeft="0dp"
 android:paddingRight="0dp"
 android:paddingTop="0dp"
-tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.GuessParkingLocationActivity">
+tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities.GuessParkingLocationActivity">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

@@ -1,9 +1,10 @@
-package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis;
+package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.R;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.SharedPreferencesUtils;
 
 public class MainMenuActivity extends AppCompatActivity {

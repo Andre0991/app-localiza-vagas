@@ -1,4 +1,4 @@
-package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services;
+package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -12,8 +12,8 @@ import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Enti
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyStringCallback;
 import com.google.gson.Gson;
 
-import static com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services.Service.API_ADDRESS;
-import static com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services.Service.API_VERSION;
+import static com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network.Service.API_ADDRESS;
+import static com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network.Service.API_VERSION;
 
 /**
  * Created by andreperictavares on 20/11/2016.

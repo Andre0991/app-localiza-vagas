@@ -1,4 +1,4 @@
-/**/package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis;
+/**/package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,10 +10,14 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.User;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services.UserServices;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.R;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network.UserServices;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.SharedPreferencesUtils;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.ValidationUtils;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyStringCallback;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyJsonOBJCallback;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -90,10 +94,16 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         User user = new User(txtUsername, txtPassword, txtFirstName, txtSurname, txtEmail);
-        UserServices.addUser(user, txtPassword, this, new VolleyStringCallback() {
+        UserServices.addUser(user, this, new VolleyJsonOBJCallback() {
             @Override
-            public void onSuccessResponse(String result) {
-                SharedPreferencesUtils.setUsername(RegisterActivity.this, txtFirstName);
+            public void onSuccessResponse(JSONObject result) {
+                try {
+                    SharedPreferencesUtils.setToken(RegisterActivity.this, result.getString("token"));
+                } catch (JSONException e) {
+                    // TODO
+                    e.printStackTrace();
+                }
+                SharedPreferencesUtils.setUsername(RegisterActivity.this, txtUsername);
                 SharedPreferencesUtils.setPassword(RegisterActivity.this, txtPassword);
                 SharedPreferencesUtils.setFirstName(RegisterActivity.this, txtFirstName);
                 SharedPreferencesUtils.setSurname(RegisterActivity.this, txtSurname);

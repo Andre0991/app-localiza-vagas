@@ -45,19 +45,25 @@ class UserService {
                                     }
                                     console.log(query.sql);
                                     console.log("User added.");
+
+                                    var token = jwt.encode(info.username, secrets.jwt_secret);
+                                    // return the information including token as JSON
+                                    callback({ status: "success", token: 'JWT ' + token });
                                     // TODO: true correto?
-                                    callback(null, true)
+                                    // callback(null, true)
                                 });
                             });
                         });
 
                     } else {
-                        callback(new Error("Já existe usuário registrado com este e-mail."))
+                        // callback(new Error("Já existe usuário registrado com este e-mail."))
+                        callback({ status: "fail", message: 'Já existe usuário registrado com este e-mail.'});
                     }
                 })
             }
             else {
-                callback(new Error("Usuário já existe."))
+                // callback(new Error("Usuário já existe."))
+                callback({ status: "fail", message: 'Usuário já existe.' });
             }
         })
     }
@@ -114,7 +120,38 @@ class UserService {
             callback(rows);
         });
     }
-}
 
+
+    rowToUser(row) {
+        return {
+            user_id: row.user_id,
+            username: row.username,
+            first_name: row.first_name,
+            surname: row.surname,
+            email: row.email
+        }
+    }
+
+    getOne(username, callback) {
+        var that = this;
+        var query = this.connection.query(
+            'SELECT * FROM usuarios WHERE username = ' + mysql.escape(username),
+            function (err, rows, fields) {
+                // TODO: tratar erro?
+                if (err) {
+                    console.log({status: 'error', message: err.message});
+                    throw err;
+                }
+                if (rows.length != 0) {
+                    var user = that.rowToUser(rows[0]);
+                    callback({status: 'success', data: user});
+                }
+                else {
+                    callback({status: 'fail', message: 'Este usuario não existe.'});
+                }
+            });
+            console.log(query.sql);
+    }
+}
 
 module.exports = new UserService();

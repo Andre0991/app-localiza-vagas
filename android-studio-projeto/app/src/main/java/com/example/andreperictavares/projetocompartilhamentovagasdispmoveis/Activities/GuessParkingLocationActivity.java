@@ -1,6 +1,5 @@
-package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis;
+package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities;
 
-import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,7 +9,8 @@ import android.widget.TextView;
 
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.ParkingLocation;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.User;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Services.NominatimServices;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.R;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network.NominatimServices;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyJsonOBJCallback;
 import com.google.android.gms.common.api.GoogleApiClient;
 

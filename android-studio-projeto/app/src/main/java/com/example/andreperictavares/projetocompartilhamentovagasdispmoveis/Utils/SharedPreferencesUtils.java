@@ -3,7 +3,7 @@ package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Uti
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.RegisterActivity;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities.RegisterActivity;
 
 /**
  * Created by andre.peric.tavares on 11/10/2016.
@@ -16,6 +16,7 @@ public class SharedPreferencesUtils {
     private static final String FIRST_NAME_KEY = "SH_KEY_FIRSTNAME";
     private static final String SURNAME_KEY = "SH_KEY_SURNAME";
     private static final String EMAIL_KEY = "SH_KEY_EMAIL";
+    private static final String TOKEN_KEY = "SH_KEY_TOKEN";
 
     private static SharedPreferences getPrefs(Context context) {
         return context.getSharedPreferences(SHPR_NAME, Context.MODE_PRIVATE);
@@ -27,6 +28,10 @@ public class SharedPreferencesUtils {
 
     public static String getUsername(Context context){
         return getPrefs(context).getString(USER_NAME_KEY, "");
+    }
+
+    public static String getToken(Context context){
+        return getPrefs(context).getString(TOKEN_KEY, "");
     }
 
     public static String getPassword(Context context){
@@ -73,6 +78,12 @@ public class SharedPreferencesUtils {
         public static void setEmail(Context context, String email) {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(EMAIL_KEY, email);
+        editor.commit();
+    }
+
+    public static void setToken(Context context, String token) {
+        SharedPreferences.Editor editor = getPrefs(context).edit();
+        editor.putString(TOKEN_KEY, token);
         editor.commit();
     }
 }
