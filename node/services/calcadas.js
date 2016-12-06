@@ -51,6 +51,30 @@ class CalcadasService {
             console.log(query.sql);
     }
 
+    // TODO
+    getAll(callback) {
+        var that = this;
+        var query = this.connection.query(
+            'SELECT * FROM calcadas',
+            function (err, rows, fields) {
+                // TODO: tratar erro?
+                if (err) {
+                    callback({status: 'error', message: err.message});
+                    throw err;
+                }
+                if (rows.length != 0) {
+                    var all_calcadas = rows.map(function(row) {
+                        return that.rowToCalcada(row);
+                    });
+                    callback({status: 'success', calcadas: all_calcadas});
+                }
+                else {
+                    callback({ status: 'fail', message: 'Não há nenhuma calçada registrada.' });
+                }
+            });
+            console.log(query.sql);
+    }
+
     getCalcada(calcadaId) {
         this.connection.query('SELECT * FROM calcadas WHERE id = ' + this.connection.escape(calcadaId), function (err, rows, fields) {
             // TODO: ver se nào existe calçada
@@ -110,18 +134,6 @@ class CalcadasService {
                 console.log(query.sql);
             }
         });
-    }
-
-    updatePlayer(playerId, info) {
-        var player = this.getSinglePlayer(playerId);
-        if (player) {
-            player.firstName = info.firstName ? info.firstName : player.firstName;
-            player.lastName = info.lastName ? info.lastName : player.lastName;
-            player.displayName = info.displayName ? info.displayName : player.displayName;
-
-            return true;
-        }
-        return false;
     }
 }
 

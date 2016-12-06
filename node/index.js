@@ -32,9 +32,15 @@ var CalcadaController = require('./controllers/calcadas');
 var pc = new CalcadaController(apiRouter, passport);
 
 
+var DistanciaController = require('./controllers/distancia');
+var pc = new DistanciaController(apiRouter, passport);
+
+
 // seed the db for testing
 var UserService = require('./services/users');
 var CalcadasService = require('./services/calcadas');
+var DistanciaService = require('./services/distancia');
+
 var p1 = CalcadasService.addCalcada({ latitude: '10', longitude: '50' }, function () {});
 var p2 = CalcadasService.addCalcada({ latitude: '20', longitude: '60' }, function () {});
 var p3 = CalcadasService.addCalcada({ latitude: '30', longitude: '70' }, function () {});
