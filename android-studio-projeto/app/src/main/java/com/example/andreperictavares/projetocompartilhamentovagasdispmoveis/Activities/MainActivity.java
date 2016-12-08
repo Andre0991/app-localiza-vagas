@@ -37,22 +37,7 @@ public class MainActivity extends AppCompatActivity {
                     try {
                         String token = result.getString("token");
                         SharedPreferencesUtils.setToken(MainActivity.this, token);
-                        // TODO: deletar (teste)
-                        Calcada calcada = new Calcada(12, "3887777", "rua blau3", 123.4, 345.5, User.getCurrentUser(MainActivity.this));
-                        CalcadaServices.addCalcada(calcada, MainActivity.this, new VolleyJsonOBJCallback() {
-                            @Override
-                            public void onSuccessResponse(JSONObject result) {
-                                Toast.makeText(MainActivity.this, "Adicionou calcada com sucesso!", Toast.LENGTH_LONG).show();
-                            }
-                            @Override
-                            public void onErrorResponse(String errorMsg) {
-                                if (errorMsg != null){
-                                    Toast.makeText(MainActivity.this, errorMsg, Toast.LENGTH_LONG).show();
-                                }
-                            }
-                        });
-                        // fim teste
-                        Intent intent = new Intent(MainActivity.this, GuessParkingLocationActivity.class);
+                        Intent intent = new Intent(MainActivity.this, MainMenuActivity.class);
                         startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();

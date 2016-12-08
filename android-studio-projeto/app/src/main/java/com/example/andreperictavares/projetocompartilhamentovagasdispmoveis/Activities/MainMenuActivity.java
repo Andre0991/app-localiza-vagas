@@ -1,7 +1,10 @@
 package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.R;
@@ -9,12 +12,23 @@ import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Util
 
 public class MainMenuActivity extends AppCompatActivity {
 
+    Button registerParkingLocationButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
 
+        this.registerParkingLocationButton = (Button) findViewById(R.id.registerParkingLocation);
+
         TextView wellcomeText = (TextView)findViewById(R.id.wellcome);
         wellcomeText.setText("Seja bem vindo, " + SharedPreferencesUtils.getFirstName(this));
     }
+
+    public void registerParkingLocation(View view){
+        Intent intent = new Intent(this, GuessParkingLocationActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
+
 }

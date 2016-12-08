@@ -12,4 +12,8 @@
     <string name="cidade">cidade</string>
     <string name="estado">estado</string>
     <string name="o_endere_o_acima_est_correto">O endereço acima está correto?</string>
+    <string name="procurar_calcada_livre">Procurar calçada livre</string>
+    <string name="sucess_response_insert_address">Sucesso! Calçada adicionada.</string>
+    <string name="error_response_insert_address">Não adicionou calçada com sucesso :(</string>
+    <string name="postcode">CEP</string>
 </resources>

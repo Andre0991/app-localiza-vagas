@@ -10,6 +10,19 @@
     android:paddingTop="0dp"
     tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities.MainMenuActivity">
 
+    <Button
+        android:text="@string/procurar_calcada_livre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2" />
+
+    <Button
+        android:text="Cadastrar calçada"
+        android:layout_width="match_parent"
+        android:onClick="registerParkingLocation"
+        android:layout_height="wrap_content"
+        android:id="@+id/registerParkingLocation" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

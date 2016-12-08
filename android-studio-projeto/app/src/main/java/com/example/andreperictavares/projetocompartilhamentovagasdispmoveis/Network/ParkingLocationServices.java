@@ -21,7 +21,7 @@ import static com.example.andreperictavares.projetocompartilhamentovagasdispmove
 
 public class ParkingLocationServices {
         public static void addParkingLocation(ParkingLocation parkingLocation, final Context ctx, final VolleyStringCallback callback) {
-        String url = API_ADDRESS + API_VERSION + "/parkingLocation";
+        String url = API_ADDRESS + API_VERSION + "/calcada";
         final String body = new Gson().toJson(parkingLocation);
         StringRequest req = new StringRequest(Request.Method.POST, url,
                 new Response.Listener<String>() {
@@ -33,6 +33,7 @@ public class ParkingLocationServices {
                     public void onErrorResponse(VolleyError error) {
                         String errorMsg = Service.getErrorResponse(error);
                         if (errorMsg != null){
+                            // TODO: Tirar - serve apenas para debugar
                             Toast.makeText(ctx, errorMsg, Toast.LENGTH_LONG).show();
                         }
                     }

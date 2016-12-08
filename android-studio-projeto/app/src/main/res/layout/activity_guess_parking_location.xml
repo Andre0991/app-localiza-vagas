@@ -40,6 +40,12 @@ tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmov
         android:text="@string/o_endere_o_acima_est_correto"
         android:id="@+id/right_address_question" />
 
+    <TextView
+        android:text="@string/postcode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/postcode" />
+
     <ProgressBar
         style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="match_parent"

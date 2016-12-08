@@ -1,5 +1,6 @@
 package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities;
 
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.util.Log;
@@ -7,10 +8,12 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.Calcada;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.ParkingLocation;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.User;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.R;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network.NominatimServices;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.SharedPreferencesUtils;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyJsonOBJCallback;
 import com.google.android.gms.common.api.GoogleApiClient;
 
@@ -24,7 +27,11 @@ public class GuessParkingLocationActivity extends LocationActivity implements Go
     protected TextView bairroTextView;
     protected TextView cidadeTextView;
     protected TextView estadoTextView;
+    protected TextView postcodeView;
     protected ProgressBar mProgress;
+
+    double latitude;
+    double longitude;
 
     private static String TAG = "GuessParkingLocation";
 
@@ -37,7 +44,9 @@ public class GuessParkingLocationActivity extends LocationActivity implements Go
         bairroTextView = (TextView) findViewById(R.id.bairro);
         cidadeTextView = (TextView) findViewById(R.id.cidade);
         estadoTextView = (TextView) findViewById(R.id.estado);
+        postcodeView = (TextView) findViewById(R.id.postcode);
         mProgress = (ProgressBar) findViewById(R.id.progressBar);
+
     }
 
     @Override
@@ -47,9 +56,11 @@ public class GuessParkingLocationActivity extends LocationActivity implements Go
         if (super.mCurrentLocation != null) {
             NominatimServices nominatimServices = new NominatimServices();
             Log.i(TAG, "Obtendo detalhes sobre localização no Nominatim");
+            this.latitude = mCurrentLocation.getLatitude();
+            this.longitude = mCurrentLocation.getLongitude();
             nominatimServices.getLocationDetails(this,
-                    mCurrentLocation.getLatitude(),
-                    mCurrentLocation.getLongitude(),
+                    latitude,
+                    longitude,
                     new VolleyJsonOBJCallback() {
                         @Override
                         public void onSuccessResponse(JSONObject result) {
@@ -72,11 +83,10 @@ public class GuessParkingLocationActivity extends LocationActivity implements Go
         }
     }
 
-    // TODO: complete when next activity is ready
     private void skipThisActivity() {
-//            Intent intent = new Intent(FILL_THIS.this, MainMenuActivity.class);
-//            startActivity(intent);
-//            GuessParkingLocationActivity.this.finish();
+            Intent intent = new Intent(this, InsertAddressManuallyActivity.class);
+            startActivity(intent);
+            GuessParkingLocationActivity.this.finish();
     }
 
     private void updateUI(JSONObject result) {
@@ -86,6 +96,7 @@ public class GuessParkingLocationActivity extends LocationActivity implements Go
             bairroTextView.setText(address.getString("suburb"));
             cidadeTextView.setText(address.getString("city"));
             estadoTextView.setText(address.getString("state"));
+            postcodeView.setText(address.getString("postcode"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -107,19 +118,13 @@ public class GuessParkingLocationActivity extends LocationActivity implements Go
         return true;
     }
 
-    private void sendParkingLocation() {
+    private void sendParkingLocation(int number) {
         String road = ruaTextView.getText().toString();
-        String suburb = bairroTextView.getText().toString();
-        String city = cidadeTextView.getText().toString();
-        String state = estadoTextView.getText().toString();
-        int number = 0;
-        ParkingLocation parkingLocation = new ParkingLocation(number,
-        road,
-        suburb,
-        city,
-        state,
-        super.mCurrentLocation.getLatitude(),
-        super.mCurrentLocation.getLongitude(),
-        User.getCurrentUser(this));
+        String postcode = generatePostCodeWithoutNonNumericChars(postcodeView.getText().toString());
+        Calcada calcada = new Calcada(number, postcode, road, latitude, longitude, User.getCurrentUser(this));
+    }
+
+        private String generatePostCodeWithoutNonNumericChars(String postcode) {
+        return postcode.replace("-", "");
     }
 }
