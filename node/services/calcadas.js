@@ -3,7 +3,7 @@
 
 var uuid = require('node-uuid');
 var mysql = require('mysql')
-
+var UserService = require('./users');
 
 class CalcadasService {
     constructor() {
@@ -122,16 +122,25 @@ class CalcadasService {
             // TODO: usar status mais específico para inficar que calçada não existe?
             }
             else if (resp.status == "fail") {
-                var calcada = {latitude: info.latitude, longitude: info.longitude, cep: info.cep, numero: info.numero, rua: info.rua};
-                var query = that.connection.query('INSERT INTO calcadas SET ?', calcada, function (err, result) {
-                    if (err){
-                        callback({status: "error", "message": err.message});
+                var user_id;
+                UserService.getOne(info.user.username, function (user_result) {
+                    if (user_result.status == "success"){
+                        user_id = user_result.data.user_id;
+                        var calcada = { latitude: info.latitude, longitude: info.longitude, cep: info.cep, numero: info.numero, rua: info.rua, user_id: user_id};
+                        var query = that.connection.query('INSERT INTO calcadas SET ?', calcada, function (err, result) {
+                            if (err) {
+                                callback({ status: "error", "message": err.message });
+                            }
+                            else {
+                                callback({ "status": "success" });
+                            }
+                        });
+                        console.log(query.sql);
                     }
                     else {
-                        callback({"status": "success"});
+                        callback({ status: "error", "message": "Não há usuário com o id informado" });
                     }
                 });
-                console.log(query.sql);
             }
         });
     }

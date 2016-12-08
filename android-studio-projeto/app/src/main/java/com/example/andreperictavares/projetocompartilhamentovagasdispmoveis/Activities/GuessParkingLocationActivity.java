@@ -9,11 +9,9 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.Calcada;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.ParkingLocation;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.User;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.R;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network.NominatimServices;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.SharedPreferencesUtils;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyJsonOBJCallback;
 import com.google.android.gms.common.api.GoogleApiClient;
 

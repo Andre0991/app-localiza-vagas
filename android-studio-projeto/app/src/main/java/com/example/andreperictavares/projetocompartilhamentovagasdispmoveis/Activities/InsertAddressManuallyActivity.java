@@ -7,14 +7,10 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.Calcada;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.ParkingLocation;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.User;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network.CalcadaServices;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network.ParkingLocationServices;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.R;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.SharedPreferencesUtils;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyJsonOBJCallback;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyStringCallback;
 
 import org.json.JSONObject;
 
