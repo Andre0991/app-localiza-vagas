@@ -71,8 +71,6 @@ public class CalcadaServices {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-
     }
 
 }
