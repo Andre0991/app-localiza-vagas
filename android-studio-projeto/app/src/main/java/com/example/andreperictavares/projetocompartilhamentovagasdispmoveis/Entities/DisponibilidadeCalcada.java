@@ -11,12 +11,12 @@ public class DisponibilidadeCalcada {
     }
 
     Day day;
-    Horario incio;
+    Horario inicio;
     Horario fim;
 
     public DisponibilidadeCalcada(Day day, Horario incio, Horario fim) {
         this.day = day;
-        this.incio = incio;
+        this.inicio = incio;
         this.fim = fim;
     }
 }
