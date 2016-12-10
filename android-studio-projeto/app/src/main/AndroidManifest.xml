@@ -25,7 +25,8 @@
         <activity android:name=".Activities.GuessParkingLocationActivity" />
         <activity android:name=".Activities.InsertAddressManuallyActivity" />
         <activity android:name=".Activities.SearchFreeParkingLocationActivity" />
-        <activity android:name=".Activities.InsertHouseNumber"></activity>
+        <activity android:name=".Activities.InsertHouseNumber" />
+        <activity android:name=".Activities.AddScheduleParkingLocation"></activity>
     </application>
 
 </manifest>
