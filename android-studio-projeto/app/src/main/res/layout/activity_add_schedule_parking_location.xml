@@ -10,4 +10,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities.AddScheduleParkingLocation">
 
+    <Button
+        android:text="Enviar requisição teste"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:onClick="enviarRequisicaoTest"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:id="@+id/button6" />
 </RelativeLayout>

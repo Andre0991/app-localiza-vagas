@@ -31,4 +31,10 @@ public class MainMenuActivity extends AppCompatActivity {
         this.finish();
     }
 
+    public void goToCalcadaHorarioActivity(View view){
+        Intent intent = new Intent(this, AddScheduleParkingLocation.class);
+        startActivity(intent);
+        this.finish();
+    }
+
 }

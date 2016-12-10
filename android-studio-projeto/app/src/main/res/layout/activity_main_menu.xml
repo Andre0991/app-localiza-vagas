@@ -23,6 +23,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/registerParkingLocation" />
 
+    <Button
+        android:text="Cadastrar horário de calçada (teste - retirar depois)"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToCalcadaHorarioActivity"
+        android:id="@+id/calcadaHorario" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

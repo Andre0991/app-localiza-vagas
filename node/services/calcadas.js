@@ -75,37 +75,19 @@ class CalcadasService {
             console.log(query.sql);
     }
 
-    getCalcada(calcadaId) {
-        this.connection.query('SELECT * FROM calcadas WHERE id = ' + this.connection.escape(calcadaId), function (err, rows, fields) {
-            // TODO: ver se nào existe calçada
-            if (err) throw err
-            if (rows.length == 0){
-                return false;
-            }
-            return makeCalcadaJsonFromRow(rows[0])
-        });
-    }
 
-    makeCalcadaJsonFromRow(row) {
-        var latitude = row.latitude;
-        var longitude = row.longitude;
-        console.log('A calçada tem latitude: ', latitude)
-        console.log('A calçada tem longitude: ', longitude)
-        return {
-            "latitude": latitude,
-            "longitude": longitude
-        }
-    }
-
-    getCalcadaByUserId(userId){
+    getCalcadaByUserId(user_id, callback){
+        var that = this;
         this.connection.query('SELECT * FROM calcadas WHERE user_id = ' + this.connection.escape(user_id), function (err, rows, fields) {
             // TODO: ver se nào existe calçada
             if (err) throw err
             if (rows.length == 0){
-                return false;
+                callback({ status: "fail", "message": "Não foi encontrada calçada para este usuário" });
             }
-            return makeCalcadaJsonFromRow(rows[0])
-        });
+            else {
+                callback({ status: "success", "data": that.rowToCalcada(rows[0]) });
+            }
+            });
     }
 
     addCalcada(info, callback) {

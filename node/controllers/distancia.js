@@ -5,7 +5,7 @@ var jwt = require('jwt-simple');
 var secrets = require('../config/secrets');
 
 
-class CalcadasController {
+class DistanciaController {
     constructor(router, passport) {
         this.router = router;
         this.passport = passport;
@@ -30,4 +30,4 @@ class CalcadasController {
     }
 }
 
-module.exports = CalcadasController;
+module.exports = DistanciaController;
