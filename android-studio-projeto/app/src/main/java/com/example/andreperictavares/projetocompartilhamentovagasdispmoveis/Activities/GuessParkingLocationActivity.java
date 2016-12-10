@@ -81,10 +81,15 @@ public class GuessParkingLocationActivity extends LocationActivity implements Go
         }
     }
 
+    public void skipThisActivity(View view) {
+        skipThisActivity();
+    }
+
+
     private void skipThisActivity() {
-            Intent intent = new Intent(this, InsertAddressManuallyActivity.class);
-            startActivity(intent);
-            GuessParkingLocationActivity.this.finish();
+        Intent intent = new Intent(this, InsertAddressManuallyActivity.class);
+        startActivity(intent);
+        GuessParkingLocationActivity.this.finish();
     }
 
     private void updateUI(JSONObject result) {
@@ -116,13 +121,20 @@ public class GuessParkingLocationActivity extends LocationActivity implements Go
         return true;
     }
 
-    private void sendParkingLocation(int number) {
-        String road = ruaTextView.getText().toString();
-        String postcode = generatePostCodeWithoutNonNumericChars(postcodeView.getText().toString());
-        Calcada calcada = new Calcada(number, postcode, road, latitude, longitude, User.getCurrentUser(this));
+
+    private String generatePostCodeWithoutNonNumericChars(String postcode) {
+        return postcode.replace("-", "");
     }
 
-        private String generatePostCodeWithoutNonNumericChars(String postcode) {
-        return postcode.replace("-", "");
+    public void goToInsertHouserNumberActivity(View view) {
+        Intent intent = new Intent(this, InsertHouseNumber.class);
+        String road = ruaTextView.getText().toString();
+        String postcode = generatePostCodeWithoutNonNumericChars(postcodeView.getText().toString());
+        intent.putExtra("postcode", postcode);
+        intent.putExtra("road", road);
+        intent.putExtra("latitude", latitude);
+        intent.putExtra("longitude", longitude);
+        startActivity(intent);
+        GuessParkingLocationActivity.this.finish();
     }
 }

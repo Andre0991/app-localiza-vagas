@@ -11,9 +11,13 @@
     <string name="bairro">Bairro</string>
     <string name="cidade">cidade</string>
     <string name="estado">estado</string>
-    <string name="o_endere_o_acima_est_correto">O endereço acima está correto?</string>
+    <string name="is_suggest_address_correct">O endereço abaixo está correto?</string>
     <string name="procurar_calcada_livre">Procurar calçada livre</string>
     <string name="sucess_response_insert_address">Sucesso! Calçada adicionada.</string>
     <string name="error_response_insert_address">Não adicionou calçada com sucesso :(</string>
     <string name="postcode">CEP</string>
+    <string name="type_adddress_number">Digite o número de sua casa.</string>
+    <string name="register_address">Cadastrar endereço.</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
 </resources>

@@ -10,6 +10,14 @@ android:paddingLeft="0dp"
 android:paddingRight="0dp"
 android:paddingTop="0dp"
 tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities.GuessParkingLocationActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/is_suggest_address_correct"
+        android:id="@+id/right_address_question"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,11 +42,6 @@ tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmov
         android:text="@string/estado"
         android:id="@+id/estado" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/o_endere_o_acima_est_correto"
-        android:id="@+id/right_address_question" />
 
     <TextView
         android:text="@string/postcode"
@@ -46,10 +49,25 @@ tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmov
         android:layout_height="wrap_content"
         android:id="@+id/postcode" />
 
+
     <ProgressBar
         style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/progressBar" />
+
+    <Button
+        android:text="@string/yes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="goToInsertHouserNumberActivity"
+        android:id="@+id/button4" />
+
+    <Button
+        android:text="@string/no"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="skipThisActivity"
+        android:id="@+id/button5" />
 
 </LinearLayout>
