@@ -1,0 +1,81 @@
+create database vagas_db;
+use vagas_db;
+
+CREATE TABLE usuarios (user_id int auto_increment not null,
+username varchar(50) not null,
+surname varchar(50) not null,
+user_hash varchar(100) not null,
+first_name varchar(100) not null,
+email varchar(100) not null,
+primary key (user_id));
+
+CREATE TABLE calcadas (calcada_id int auto_increment not null,
+numero int unsigned,
+cep varchar(8) not null,
+rua varchar(100) not null,
+latitude float not null,
+longitude float not null,
+user_id int,
+primary key (calcada_id),
+foreign key (user_id) references usuarios (user_id));
+
+CREATE TABLE horarios (horario_id int auto_increment not null,
+EVENT_DAY ENUM('SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'),
+start_time time,
+end_time time,
+calcada_id int,
+primary key (horario_id),
+foreign key (calcada_id) references calcadas (calcada_id));
+
+INSERT INTO `vagas_db`.`calcadas`
+(`calcada_id`,
+`numero`,
+`cep`,
+`rua`,
+`latitude`,
+`longitude`,
+`user_id`)
+VALUES
+(1,
+5001,
+1245,
+'Av. dos Estados',
+-23.6441964,
+-46.5306079,
+1);
+
+INSERT INTO `vagas_db`.`calcadas`
+(`calcada_id`,
+`numero`,
+`cep`,
+`rua`,
+`latitude`,
+`longitude`,
+`user_id`)
+VALUES
+(2,
+246,
+1245,
+'R. dos Aliados',
+-23.6421226,
+-46.5296987,
+2);
+
+
+INSERT INTO `vagas_db`.`calcadas`
+(`calcada_id`,
+`numero`,
+`cep`,
+`rua`,
+`latitude`,
+`longitude`,
+`user_id`)
+VALUES
+(3,
+20,
+1245,
+'R. Bari',
+-23.6221699,
+-46.5352677,
+3);
+
