@@ -3,12 +3,9 @@ package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Act
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.Calcada;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.User;
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network.CalcadaServices;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network.UserServices;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.R;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.SharedPreferencesUtils;
@@ -26,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         if (!SharedPreferencesUtils.hasUserRegistered(this)){
-            goToRegisterScreen();
+            goToLoginActivity();
             MainActivity.this.finish();
         }
         else {
@@ -38,6 +35,9 @@ public class MainActivity extends AppCompatActivity {
                         String token = result.getString("token");
                         SharedPreferencesUtils.setToken(MainActivity.this, token);
                         Intent intent = new Intent(MainActivity.this, MainMenuActivity.class);
+                        // test
+//                        Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+                        // fim test
                         startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void goToRegisterScreen() {
-        Intent intent = new Intent(this, RegisterActivity.class);
+    public void goToLoginActivity() {
+        Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
 }
