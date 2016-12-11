@@ -14,7 +14,8 @@
         android:text="@string/procurar_calcada_livre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button2" />
+        android:onClick="goToSearchFreeParkingLocationActivity"
+        android:id="@+id/searchAvailableParkingLocation" />
 
     <Button
         android:text="Cadastrar calçada"

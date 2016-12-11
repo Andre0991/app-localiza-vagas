@@ -37,4 +37,9 @@ public class MainMenuActivity extends AppCompatActivity {
         this.finish();
     }
 
+    public void goToSearchFreeParkingLocationActivity(View view) {
+        Intent intent = new Intent(this, SearchFreeParkingLocationActivity.class);
+        startActivity(intent);
+        this.finish();
+    }
 }
