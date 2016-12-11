@@ -15,6 +15,7 @@ cep varchar(8) not null,
 rua varchar(100) not null,
 latitude float not null,
 longitude float not null,
+is_busy boolean default false,
 user_id int,
 primary key (calcada_id),
 foreign key (user_id) references usuarios (user_id));
@@ -26,56 +27,3 @@ end_time time,
 calcada_id int,
 primary key (horario_id),
 foreign key (calcada_id) references calcadas (calcada_id));
-
-INSERT INTO `vagas_db`.`calcadas`
-(`calcada_id`,
-`numero`,
-`cep`,
-`rua`,
-`latitude`,
-`longitude`,
-`user_id`)
-VALUES
-(1,
-5001,
-1245,
-'Av. dos Estados',
--23.6441964,
--46.5306079,
-1);
-
-INSERT INTO `vagas_db`.`calcadas`
-(`calcada_id`,
-`numero`,
-`cep`,
-`rua`,
-`latitude`,
-`longitude`,
-`user_id`)
-VALUES
-(2,
-246,
-1245,
-'R. dos Aliados',
--23.6421226,
--46.5296987,
-2);
-
-
-INSERT INTO `vagas_db`.`calcadas`
-(`calcada_id`,
-`numero`,
-`cep`,
-`rua`,
-`latitude`,
-`longitude`,
-`user_id`)
-VALUES
-(3,
-20,
-1245,
-'R. Bari',
--23.6221699,
--46.5352677,
-3);
-

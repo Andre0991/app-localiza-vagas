@@ -60,6 +60,25 @@ UserService.addUser({ username: "andre_default", password: "something_not_hashed
   // UserService.authUser({ username: "andre_not_exists", password: "something_not_hashed"})
 })
 
+UserService.addUser({
+  username: "steffan_diorgy",
+  password: "password123testetc",
+  email: "steff@lgmai.com",
+  first_name: "Steffan",
+  surname: "Diorgy"
+},
+function () {});
+
+UserService.addUser({
+  username: "lais_marinho",
+  password: "password123testetc",
+  email: "lais_lalala@lgmai.com",
+  first_name: "Lais",
+  surname: "Marinho"
+},
+function () {});
+
+
 apiRouter.post('/test', passport.authenticate('jwt', { session: false }), function(req, res) {
   res.status(200).send("oi!!!!");
   }); 

@@ -75,6 +75,9 @@ class CalcadasService {
             console.log(query.sql);
     }
 
+    getAllAvailable(callback) {
+    }
+
 
     getCalcadaByUserId(user_id, callback){
         var that = this;
