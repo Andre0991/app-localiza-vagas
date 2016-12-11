@@ -11,7 +11,6 @@ public class Calcada {
     Double latitude;
     Double longitude;
     User user;
-    // TODO: horário?
 
     public Calcada(int numero, String cep, String rua, Double latitude, Double longitude, User user) {
         this.numero = numero;

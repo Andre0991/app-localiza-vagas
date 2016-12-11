@@ -20,17 +20,17 @@ class DistanciaService {
 
     // TODO: colocar index para saber qual calçada do banco de dados é cada resposta
     calcadaMaisProxima(lat, lon, callback) {
-        CalcadasService.getAll(function (resp) {
+        CalcadasService.getAllAvailable(new Date(), function (resp) {
             if (resp.status == "success") {
-                var all_calcadas = resp.calcadas;
+                var all_calcadas = resp.data;
                 var all_calcadas_coordinates = all_calcadas.map(function(calcada) {
                     return calcada.latitude.toString() + "," + calcada.longitude.toString();
                 });
                 distance.get(
                     {
-                        // origins: ['51.510652,-0.095444'],
+                        // formato: ['51.510652,-0.095444'],
                         origins: [lat + "," + lon],
-                        // destinations: ['San Diego, CA', 'Seattle, WA', 'New York, NY']
+                        // formato: ['San Diego, CA', 'Seattle, WA', 'New York, NY']
                         destinations: all_calcadas_coordinates
                     },
                     function (err, data) {
@@ -42,11 +42,29 @@ class DistanciaService {
                         var data_with_indexes = data.map(function(dest) {
                             return {destino: dest, index: arr_indexes.pop()};
                         })
-                        var sorted_data = data_with_indexes.sort(function (a, b) { return a.destino.distanceValue - b.destino.distanceValue; })
+                        var sorted_data = data_with_indexes.sort(function (a, b) {
+                            return a.destino.distanceValue - b.destino.distanceValue;
+                        })
                         console.log(sorted_data);
-                        var calcada_mais_proxima_index = sorted_data[0].index;
-                        var calcada_mais_proxima = all_calcadas[calcada_mais_proxima_index];
-                        callback({ status: 'success', calcadas: calcada_mais_proxima });
+                        // var calcadas_mais_proximas = 
+                        // sorted_data.map(function(cidade) {
+                        //     return {index: cidade.index,
+                        //         distance: cidade.destino.distance,
+                        //         duration: cidade.destino.duration};
+                        // }).slice(0,3).map(function(idx) {
+                        //     return all_calcadas[idx];
+                        // });
+                        var calcadas_mais_proximas =
+                            sorted_data.slice(0, 3).map(function (cid) {
+                                return {
+                                    calcada: all_calcadas[cid.index],
+                                    distance: cid.destino.distance,
+                                    duration: cid.destino.duration
+                                };
+                            });
+                        // var calcada_mais_proxima_index = sorted_data[0].index;
+                        // var calcada_mais_proxima = all_calcadas[calcada_mais_proxima_index];
+                        callback({ status: 'success', calcadas: calcadas_mais_proximas });
                     });
             }
             else {

@@ -20,4 +20,5 @@
     <string name="register_address">Cadastrar endereço.</string>
     <string name="yes">Sim</string>
     <string name="no">Não</string>
+    <string name="title_activity_maps">Map</string>
 </resources>

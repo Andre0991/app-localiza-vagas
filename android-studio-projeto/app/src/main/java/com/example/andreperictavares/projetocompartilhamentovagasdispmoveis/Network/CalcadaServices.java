@@ -53,10 +53,44 @@ public class CalcadaServices {
                                 }
                             })
             {
-//                @Override
+                //                @Override
 //                public byte[] getBody() {
 //                    return body.getBytes();
 //                }
+                @Override
+                public Map<String, String> getHeaders(){
+                    Map<String, String> headers = new HashMap<>();
+                    headers.put("Authorization", SharedPreferencesUtils.getToken(ctx));
+                    return headers;
+                }
+                @Override
+                public String getBodyContentType() {
+                    return "application/json";
+                }};
+            RequestsQueueSingleton.getInstance(ctx).addToRequestQueue(jsObjRequest);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void gettAvailableCalcadas(final Context ctx, final VolleyJsonOBJCallback callback) {
+        String url = API_ADDRESS + API_VERSION + "/available_calcadas";
+        JSONObject jsonObj = new JSONObject();
+        try {
+            jsonObj.put("username", SharedPreferencesUtils.getUsername(ctx));
+            JsonObjectRequest jsObjRequest = new JsonObjectRequest
+                    (Request.Method.POST, url, jsonObj, new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            callback.onSuccessResponse(response);
+                        }
+                    },
+                            new Response.ErrorListener() {
+                                public void onErrorResponse(VolleyError error) {
+                                    String errorMsg = Service.getErrorResponseFromJson(error);
+                                    callback.onErrorResponse(errorMsg);
+                                }
+                            })
+            {
                 @Override
                 public Map<String, String> getHeaders(){
                     Map<String, String> headers = new HashMap<>();

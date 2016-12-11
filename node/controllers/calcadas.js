@@ -47,8 +47,6 @@ class CalcadasController {
     }
 
     getAllAvailable(req, res) {
-        var today = new Date();
-        today.setHours(today.getHours() - 1);
         CalcadasService.getAllAvailable(new Date(), function (resp) {
             if (resp.status == "success") {
                 res.status(200).send(resp);
