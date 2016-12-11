@@ -86,7 +86,12 @@ class CalcadasService {
                         response(null, !calcada.is_busy && isAvai);
                     });
                 }, function(err, calcadas_avai) {
-                    callback({ status: 'success', data: calcadas_avai });
+                    if (calcadas_avai.length > 0) {
+                        callback({ status: 'success', data: calcadas_avai });
+                    }
+                    else {
+                        callback({ status: "fail", "message": "Não há nenhuma calçada disponível" });
+                    }
                 });
             }
             else {
