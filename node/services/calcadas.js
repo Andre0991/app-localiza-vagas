@@ -1,9 +1,9 @@
-
 'use strict';
-
+var async = require("async");
 var uuid = require('node-uuid');
 var mysql = require('mysql')
 var UserService = require('./users');
+var HorarioService = require('./horarios');
 
 class CalcadasService {
     constructor() {
@@ -13,7 +13,7 @@ class CalcadasService {
             password: 'root',
             database: 'vagas_db'
         });
-        this.connection.connect()
+        this.connection.connect();
     }
 
     rowToCalcada(row) {
@@ -24,7 +24,8 @@ class CalcadasService {
             rua : row.rua,
             latitude : row.latitude,
             longitude : row.longitude,
-            user: row.user
+            user: row.user,
+            is_busy: row.is_busy
         }
     }
 
@@ -75,9 +76,44 @@ class CalcadasService {
             console.log(query.sql);
     }
 
-    getAllAvailable(callback) {
+    getAllAvailable(currentTime, callback) {
+        var that = this;
+        this.getAll(function (resp) {
+            if (resp.status == "success") {
+                async.filter(resp.calcadas, function (calcada, response) {
+                    that.calcadaIsWithinAvailableHours(calcada, currentTime, function (isAvai) {
+                        console.log(isAvai && !calcada.is_busy);
+                        response(null, !calcada.is_busy && isAvai);
+                    });
+                }, function(err, calcadas_avai) {
+                    callback({ status: 'success', data: calcadas_avai });
+                });
+            }
+            else {
+                callback(resp);
+            }
+        });
     }
 
+    calcadaIsWithinAvailableHours(calcada, currentTime, callback) {
+        var that = this;
+        var id = calcada.calcada_id;
+        HorarioService.getHorariosByCalcadaId(id, function (resp) {
+            if (resp.status == "success") {
+                var horarios = resp.data;
+                var thereExistsCalcadaAvailable = horarios.some(function(h) {
+                    return (currentTime >= h.start_time &&
+                        currentTime <= h.end_time &&
+                        h.event_day == that.dayOfWeekAsString(currentTime.getDay()));
+                });
+                callback(thereExistsCalcadaAvailable);
+            }
+            else {
+                // TODO: e se falhar?
+                callback(false);
+            }
+        });
+    }
 
     getCalcadaByUserId(user_id, callback){
         var that = this;
@@ -129,6 +165,12 @@ class CalcadasService {
             }
         });
     }
+
+    // from http://stackoverflow.com/questions/9677757/how-to-get-the-day-of-the-week-from-the-day-number-in-javascript
+    dayOfWeekAsString(dayIndex) {
+        return ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"][dayIndex];
+    }
+
 }
 
 module.exports = new CalcadasService();

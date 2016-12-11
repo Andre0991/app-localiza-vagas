@@ -19,6 +19,7 @@ class CalcadasController {
         this.router.post('/calcada', this.passport.authenticate('jwt', { session: false }), this.postCalcada.bind(this));
         // TODO: nome decente
         this.router.post('/todas_calcadas', this.passport.authenticate('jwt', { session: false }), this.getAll.bind(this));
+        this.router.post('/available_calcadas', this.passport.authenticate('jwt', { session: false }), this.getAllAvailable.bind(this));
         // this.router.put('/players/:id', this.putPlayer.bind(this));
     }
 
@@ -36,6 +37,19 @@ class CalcadasController {
 
     getAll(req, res) {
         CalcadasService.getAll(function (resp) {
+            if (resp.status == "success") {
+                res.status(200).send(resp);
+            }
+            else {
+                res.status(500).send(resp)
+            }
+        });
+    }
+
+    getAllAvailable(req, res) {
+        var today = new Date();
+        today.setHours(today.getHours() - 1);
+        CalcadasService.getAllAvailable(new Date(), function (resp) {
             if (resp.status == "success") {
                 res.status(200).send(resp);
             }

@@ -61,6 +61,52 @@ class HorarioService {
         });
     }
 
+    getHorariosByCalcadaId(calcada_id, callback) {
+        var that = this;
+        var query = this.connection.query(
+            'SELECT * FROM horarios WHERE calcada_id = ' + this.connection.escape(calcada_id),
+            function (err, rows, fields) {
+                // TODO: tratar erro?
+                if (err) {
+                    callback({status: 'error', message: err.message});
+                    throw err;
+                }
+                if (rows.length != 0) {
+                    var all_horarios = rows.map(function(row) {
+                        return that.rowToHorario(row);
+                    });
+                    callback({status: 'success', data: all_horarios});
+                }
+                else {
+                    callback({ status: 'fail', message: 'Não há nenhuma calçada registrada.' });
+                }
+            });
+            console.log(query.sql);
+    }
+
+    rowToHorario(row) {
+        // TODO: refactorar
+        var d_start = new Date();
+        var hours = row.start_time.substr(0, 2);
+        var minutes = row.start_time.substr(3, 2);
+        d_start.setHours(hours);
+        d_start.setMinutes(minutes);
+
+        var d_end = new Date();
+        var hours = row.end_time.substr(0, 2);
+        var minutes = row.end_time.substr(3, 2);
+        d_end.setHours(hours);
+        d_end.setMinutes(minutes);
+
+        return {
+            event_day : row.EVENT_DAY,
+            start_time : d_start,
+            end_time : d_end,
+            calcada_id : row.calcada_id,
+        }
+    }
+
+
     // from http://stackoverflow.com/questions/2998784/how-to-output-integers-with-leading-zeros-in-javascript
     pad_to_two_digits(num) { return ('000000000' + num).substr(-2); }
 
