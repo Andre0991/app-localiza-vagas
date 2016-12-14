@@ -3,6 +3,7 @@ package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Act
 import android.content.Context;
 import android.graphics.Color;
 import android.location.Location;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.os.Bundle;
 import android.util.Log;
@@ -66,7 +67,6 @@ public class SearchFreeParkingLocationActivity extends LocationActivity {
         final Double latitudeMock =  -23.6221257;
         final Double longitudeMock =  -46.533704;
 
-        // new refact
         ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMapAsync(new OnMapReadyCallback() {
             @Override
             public void onMapReady(final GoogleMap googleMap) {
@@ -114,22 +114,11 @@ public class SearchFreeParkingLocationActivity extends LocationActivity {
                             JSONArray jsonArr = result.getJSONArray("data");
                             for (int i = 0; i < jsonArr.length(); i++) {
                                 JSONObject jsonObj = jsonArr.getJSONObject(i);
-                                JSONObject calcadaJsonObj = jsonObj.getJSONObject("calcada");
-                                String calcadaJsonStr = calcadaJsonObj.toString();
-                                Gson gson = new Gson();
-                                Calcada calcada = gson.fromJson(calcadaJsonStr, Calcada.class);
-                                String distance = jsonObj.getString("distance");
-                                String duration = jsonObj.getString("duration");
-
-                                CalcadaInfo c = new CalcadaInfo(calcada, distance, duration, googleMap, SearchFreeParkingLocationActivity.this);
+                                CalcadaInfo c = getCalcadaInfoFromJSONObject(jsonObj, googleMap);
                                 cInfoList.add(c);
                             }
 
-
-                            Calcada firstCalcada = cInfoList.get(0).getCalcada();
-                            LatLng coord = new LatLng(firstCalcada.getLatitude(), firstCalcada.getLongitude());
-                            googleMap.moveCamera(CameraUpdateFactory.newLatLng(coord));
-                            googleMap.animateCamera( CameraUpdateFactory.zoomTo(ZOOM_LEVEL));
+                            zoomNearestCalcada(cInfoList, googleMap);
 
                             googleMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                                 @Override
@@ -155,9 +144,28 @@ public class SearchFreeParkingLocationActivity extends LocationActivity {
                 });
             }
         });
-        // end new refact
 
 
+    }
+
+    private void zoomNearestCalcada(List<CalcadaInfo> cInfoList, GoogleMap googleMap) {
+        Calcada firstCalcada = cInfoList.get(0).getCalcada();
+        LatLng coord = new LatLng(firstCalcada.getLatitude(), firstCalcada.getLongitude());
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(coord));
+        googleMap.animateCamera( CameraUpdateFactory.zoomTo(ZOOM_LEVEL));
+    }
+
+    @NonNull
+    private CalcadaInfo getCalcadaInfoFromJSONObject(JSONObject jsonObj, GoogleMap googleMap) throws JSONException {
+        // TODO: remove hardcoded stuff
+        JSONObject calcadaJsonObj = jsonObj.getJSONObject("calcada");
+        String calcadaJsonStr = calcadaJsonObj.toString();
+        Gson gson = new Gson();
+        Calcada calcada = gson.fromJson(calcadaJsonStr, Calcada.class);
+        String distance = jsonObj.getString("distance");
+        String duration = jsonObj.getString("duration");
+
+        return new CalcadaInfo(calcada, distance, duration, googleMap, SearchFreeParkingLocationActivity.this);
     }
 
 
