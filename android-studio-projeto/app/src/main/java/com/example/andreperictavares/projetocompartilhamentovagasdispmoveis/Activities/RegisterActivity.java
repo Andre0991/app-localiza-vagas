@@ -127,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
                 valid = false;
             }
             if (TextUtils.isEmpty(edtTxt.getText().toString())){
-                edtTxt.setError("Campo não pode ser vazio.");
+                edtTxt.setError(getString(R.string.message_field_not_empty));
                 valid = false;
             }
         }

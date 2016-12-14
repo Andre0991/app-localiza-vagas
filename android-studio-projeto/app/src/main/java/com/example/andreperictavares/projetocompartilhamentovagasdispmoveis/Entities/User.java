@@ -24,6 +24,11 @@ public class User {
         this.email = email;
     }
 
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
     public static User getCurrentUser(Context ctx){
         return new User(SharedPreferencesUtils.getUsername(ctx),
                 SharedPreferencesUtils.getPassword(ctx),

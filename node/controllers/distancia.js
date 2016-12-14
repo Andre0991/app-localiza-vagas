@@ -14,12 +14,12 @@ class DistanciaController {
 
     registerRoutes() {
         // TODO: nome decente
-        this.router.post('/distancia', this.passport.authenticate('jwt', { session: false }), this.getCalcadaMaisProxima.bind(this));
+        this.router.post('/distancia', this.passport.authenticate('jwt', { session: false }), this.getCalcadasMaisProximas.bind(this));
     }
 
-    getCalcadaMaisProxima(req, res) {
+    getCalcadasMaisProximas(req, res) {
         var locationInfo = req.body.data;
-        DistanciaService.calcadaMaisProxima(locationInfo.latitude, locationInfo.longitude, function (resp) {
+        DistanciaService.calcadasMaisProximas(locationInfo.latitude, locationInfo.longitude, function (resp) {
             if (resp.status == "success") {
                 res.status(200).send(resp);
             }

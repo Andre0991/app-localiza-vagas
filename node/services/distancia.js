@@ -19,7 +19,7 @@ class DistanciaService {
     }
 
     // TODO: colocar index para saber qual calçada do banco de dados é cada resposta
-    calcadaMaisProxima(lat, lon, callback) {
+    calcadasMaisProximas(lat, lon, callback) {
         CalcadasService.getAllAvailable(new Date(), function (resp) {
             if (resp.status == "success") {
                 var all_calcadas = resp.data;
@@ -64,7 +64,7 @@ class DistanciaService {
                             });
                         // var calcada_mais_proxima_index = sorted_data[0].index;
                         // var calcada_mais_proxima = all_calcadas[calcada_mais_proxima_index];
-                        callback({ status: 'success', calcadas: calcadas_mais_proximas });
+                        callback({ status: 'success', data: calcadas_mais_proximas });
                     });
             }
             else {

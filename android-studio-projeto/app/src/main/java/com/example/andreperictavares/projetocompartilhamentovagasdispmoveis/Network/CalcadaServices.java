@@ -72,11 +72,19 @@ public class CalcadaServices {
             e.printStackTrace();
         }
     }
-    public static void gettAvailableCalcadas(final Context ctx, final VolleyJsonOBJCallback callback) {
-        String url = API_ADDRESS + API_VERSION + "/available_calcadas";
+
+    public static void getNearestAvailableCalcadas(final Context ctx, double latitude, double longitude, final VolleyJsonOBJCallback callback) {
+        String url = API_ADDRESS + API_VERSION + "/distancia";
         JSONObject jsonObj = new JSONObject();
         try {
+            // TODO: fazer algo decente
+            String jsonStr = "{'latitude':" +
+                    Double.toString(latitude) +
+                    ",'longitude': " +
+                    Double.toString(longitude) + "}";
+
             jsonObj.put("username", SharedPreferencesUtils.getUsername(ctx));
+            jsonObj.put("data", new JSONObject(jsonStr));
             JsonObjectRequest jsObjRequest = new JsonObjectRequest
                     (Request.Method.POST, url, jsonObj, new Response.Listener<JSONObject>() {
                         @Override

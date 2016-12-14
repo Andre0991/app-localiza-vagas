@@ -12,6 +12,30 @@ public class Calcada {
     Double longitude;
     User user;
 
+    public int getNumero() {
+        return numero;
+    }
+
+    public String getCep() {
+        return cep;
+    }
+
+    public String getRua() {
+        return rua;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
     public Calcada(int numero, String cep, String rua, Double latitude, Double longitude, User user) {
         this.numero = numero;
         this.cep = cep;
