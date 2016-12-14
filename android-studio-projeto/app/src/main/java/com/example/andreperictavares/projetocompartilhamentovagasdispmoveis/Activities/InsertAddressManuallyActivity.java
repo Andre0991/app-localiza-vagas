@@ -43,8 +43,7 @@ public class InsertAddressManuallyActivity extends SampleActivityBase {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_insert_address_manually);
-
-        // Open the autocomplete activity when the button is clicked.
+        
         Button openButton = (Button) findViewById(R.id.open_button);
         openButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,26 +52,22 @@ public class InsertAddressManuallyActivity extends SampleActivityBase {
             }
         });
 
-        // Retrieve the TextViews that will display details about the selected place.
         mPlaceDetailsText = (TextView) findViewById(R.id.place_details);
         mPlaceAttribution = (TextView) findViewById(R.id.place_attribution);
     }
 
     private void openAutocompleteActivity() {
         try {
-            // The autocomplete activity requires Google Play Services to be available. The intent
-            // builder checks this and throws an exception if it is not the case.
+
             Intent intent = new PlaceAutocomplete.IntentBuilder(PlaceAutocomplete.MODE_FULLSCREEN)
                     .build(this);
             startActivityForResult(intent, REQUEST_CODE_AUTOCOMPLETE);
         } catch (GooglePlayServicesRepairableException e) {
-            // Indicates that Google Play Services is either not installed or not up to date. Prompt
-            // the user to correct the issue.
+
             GoogleApiAvailability.getInstance().getErrorDialog(this, e.getConnectionStatusCode(),
                     0 /* requestCode */).show();
         } catch (GooglePlayServicesNotAvailableException e) {
-            // Indicates that Google Play Services is not available and the problem is not easily
-            // resolvable.
+
             String message = "Google Play Services is not available: " +
                     GoogleApiAvailability.getInstance().getErrorString(e.errorCode);
 
@@ -82,19 +77,15 @@ public class InsertAddressManuallyActivity extends SampleActivityBase {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Check that the result was from the autocomplete widget.
         if (requestCode == REQUEST_CODE_AUTOCOMPLETE) {
             if (resultCode == RESULT_OK) {
-                // Get the user's selected place from the Intent.
                 Place place = PlaceAutocomplete.getPlace(this, data);
                 Log.i(TAG, "Place Selected: " + place.getName());
 
-                // Format the place's details and display them in the TextView.
                 mPlaceDetailsText.setText(formatPlaceDetails(getResources(), place.getName(),
                         place.getId(), place.getAddress(), place.getPhoneNumber(),
                         place.getWebsiteUri()));
 
-                // Display attributions if required.
                 CharSequence attributions = place.getAttributions();
                 if (!TextUtils.isEmpty(attributions)) {
                     mPlaceAttribution.setText(Html.fromHtml(attributions.toString()));
