@@ -15,6 +15,7 @@
     <TextView
         android:text="Para acessar a plataforma é necessário cadastrar-se."
         android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
         android:textAlignment="center"
         android:layout_height="wrap_content"
         android:id="@+id/textView5"
@@ -33,7 +34,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtUsername" />
+        android:id="@+id/txtUsername"
+        android:textColor="#D3D3D3" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -44,7 +46,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtPassword"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColor="#D3D3D3" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -55,7 +58,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtName" />
+        android:id="@+id/txtName"
+        android:textColor="#D3D3D3" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,7 +70,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtSobrenome" />
+        android:id="@+id/txtSobrenome"
+        android:textColor="#D3D3D3" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -78,7 +83,8 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/txtEmail" />
+        android:id="@+id/txtEmail"
+        android:textColor="#D3D3D3" />
 
     <Button
         android:layout_width="282dp"
