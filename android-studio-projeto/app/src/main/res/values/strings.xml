@@ -25,4 +25,12 @@
     <string name="passwordLogin">Senha</string>
     <string name="login">Login</string>
     <string name="not_registered">Não sou registrado</string>
+    <string name="success_login">Login efetuado com sucesso!</string>
+    <string name="message_field_not_empty">Campo não pode ser vazio.</string>
+    <string name="distance_label">Distância: </string>
+    <string name="time_label">Tempo</string>
+    <string name="go_to_pkg_location">Ir para esta calçada</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

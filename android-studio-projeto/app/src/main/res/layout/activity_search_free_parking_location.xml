@@ -11,6 +11,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities.SearchFreeParkingLocationActivity">
 
+    <!--<?xml version="1.0" encoding="utf-8"?>-->
+    <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:id="@+id/activity_search_free_parking_location"-->
+    <!--android:orientation="vertical"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:paddingBottom="0dp"-->
+    <!--android:paddingLeft="0dp"-->
+    <!--android:paddingRight="0dp"-->
+    <!--android:paddingTop="0dp"-->
+    <!--tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities.SearchFreeParkingLocationActivity">-->
+
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -23,4 +36,15 @@
         android:id="@+id/map"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+
+    <Button
+        android:text="@string/go_to_pkg_location"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="parkInThisLocation"
+        android:id="@+id/park_in_this_location" />
+
+<!--</LinearLayout>-->
 </RelativeLayout>
