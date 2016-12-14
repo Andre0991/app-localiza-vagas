@@ -30,7 +30,19 @@
     <string name="distance_label">Distância: </string>
     <string name="time_label">Tempo</string>
     <string name="go_to_pkg_location">Ir para esta calçada</string>
-
+    <string name="place_details">
+    <![CDATA[
+        <b>%1$s</b>
+        <br/>
+        <i>Place Id: %2$s</i>
+        <br/>
+        Address: %3$s
+        <br/>
+        Phone: %4$s
+        <br/>
+        Website: %5$s
+    ]]>
+    </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
