@@ -2,6 +2,7 @@ package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Act
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
@@ -14,7 +15,8 @@ import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Util
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class MainActivity extends AppCompatActivity {
+//public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
 
     private static final String TAG = "MainActivity";
 

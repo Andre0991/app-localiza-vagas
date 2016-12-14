@@ -1,5 +1,9 @@
 package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.DisponibilidadeCalcada;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.Horario;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Fragments.DatePickerFragment;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network.DisponibilidadeServices;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.R;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyJsonOBJCallback;
@@ -16,7 +21,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddScheduleParkingLocation extends AppCompatActivity {
+public class AddScheduleParkingLocation extends FragmentActivity {
 
     // OBJETIVO: Criar lista de DisponibilidadeCalcada que representa os horários
     // em que o usuário tem a calçada disponível para outros estacionarem
@@ -26,6 +31,13 @@ public class AddScheduleParkingLocation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_schedule_parking_location);
+
+//        Fragment fragment = new DatePickerFragment();
+//        FragmentManager manager = getSupportFragmentManager();
+//        FragmentTransaction transaction = manager.beginTransaction();
+//        transaction.add(R.id.fragmentTest, fragment, DatePickerFragment.TIMERANGEPICKER_TAG);
+//        transaction.addToBackStack(null);
+//        transaction.commit();
 
         try {
             // criar a partir de interface de calendário ou algo do tipo

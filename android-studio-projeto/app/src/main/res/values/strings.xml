@@ -30,4 +30,7 @@
     <string name="distance_label">Distância: </string>
     <string name="time_label">Tempo</string>
     <string name="go_to_pkg_location">Ir para esta calçada</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

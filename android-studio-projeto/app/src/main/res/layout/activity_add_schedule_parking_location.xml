@@ -8,15 +8,29 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/back"
     tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities.AddScheduleParkingLocation">
+
+
 
     <Button
         android:text="Enviar requisição teste"
         android:layout_width="wrap_content"
+        android:background="@drawable/gradiente"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:onClick="enviarRequisicaoTest"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="70dp"
-        android:id="@+id/button6" />
+        android:id="@+id/button6"
+        android:textColor="#D3D3D3" />
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/fragmentTest"
+        android:name="com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Fragments.DatePickerFragment"
+        tools:layout="@layout/fragment_date_picker"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 </RelativeLayout>

@@ -8,6 +8,7 @@ android:layout_height="match_parent"
 android:paddingBottom="0dp"
 android:paddingLeft="0dp"
 android:paddingRight="0dp"
+    android:background="@drawable/back"
 android:paddingTop="0dp"
 tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities.GuessParkingLocationActivity">
 
@@ -16,38 +17,44 @@ tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmov
         android:layout_height="wrap_content"
         android:text="@string/is_suggest_address_correct"
         android:id="@+id/right_address_question"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#D3D3D3" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/rua"
-        android:id="@+id/rua" />
+        android:id="@+id/rua"
+        android:textColor="#D3D3D3" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/bairro"
-        android:id="@+id/bairro" />
+        android:id="@+id/bairro"
+        android:textColor="#D3D3D3" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cidade"
-        android:id="@+id/cidade" />
+        android:id="@+id/cidade"
+        android:textColor="#D3D3D3" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/estado"
-        android:id="@+id/estado" />
+        android:id="@+id/estado"
+        android:textColor="#D3D3D3" />
 
 
     <TextView
         android:text="@string/postcode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/postcode" />
+        android:id="@+id/postcode"
+        android:textColor="#D3D3D3" />
 
 
     <ProgressBar
@@ -60,14 +67,18 @@ tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmov
         android:text="@string/yes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/gradiente"
         android:onClick="goToInsertHouserNumberActivity"
-        android:id="@+id/button4" />
+        android:id="@+id/button4"
+        android:textColor="#D3D3D3" />
 
     <Button
         android:text="@string/no"
         android:layout_width="match_parent"
+        android:background="@drawable/gradiente"
         android:layout_height="wrap_content"
         android:onClick="skipThisActivity"
-        android:id="@+id/button5" />
+        android:id="@+id/button5"
+        android:textColor="#D3D3D3" />
 
 </LinearLayout>
