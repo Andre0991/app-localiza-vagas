@@ -103,6 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
                     // TODO
                     e.printStackTrace();
                 }
+                // TODO: refactor to method
                 SharedPreferencesUtils.setUsername(RegisterActivity.this, txtUsername);
                 SharedPreferencesUtils.setPassword(RegisterActivity.this, txtPassword);
                 SharedPreferencesUtils.setFirstName(RegisterActivity.this, txtFirstName);

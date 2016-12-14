@@ -17,6 +17,7 @@ class UserController {
         this.router.post('/user', this.postUser.bind(this));
         this.router.post('/auth', this.authUser.bind(this));
         this.router.post('/member', this.passport.authenticate('jwt', { session: false }), this.memberTest.bind(this));
+        this.router.post('/oneUser', this.passport.authenticate('jwt', { session: false }), this.getOne.bind(this));
         // this.router.put('/players/:id', this.putPlayer.bind(this));
     }
 
@@ -45,6 +46,19 @@ class UserController {
             }
         });
     }
+
+    getOne(req, res) {
+        var userInfo = req.body;
+        UsersService.getOne(userInfo.username, function (resp) {
+            if (resp.status == "success") {
+                res.status(200).send(resp);
+            }
+            else {
+                res.status(500).send(resp)
+            }
+        });
+    }
+
 
     memberTest(req, res) {
         res.status(200).send("Agora vai!");

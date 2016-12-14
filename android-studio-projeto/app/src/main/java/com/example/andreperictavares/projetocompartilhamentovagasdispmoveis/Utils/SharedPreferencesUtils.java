@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities.RegisterActivity;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.User;
 
 /**
  * Created by andre.peric.tavares on 11/10/2016.
@@ -30,6 +31,7 @@ public class SharedPreferencesUtils {
         return getPrefs(context).getString(USER_NAME_KEY, "");
     }
 
+    // TODO: excpetion if there's no value
     public static String getToken(Context context){
         return getPrefs(context).getString(TOKEN_KEY, "");
     }
@@ -85,5 +87,13 @@ public class SharedPreferencesUtils {
         SharedPreferences.Editor editor = getPrefs(context).edit();
         editor.putString(TOKEN_KEY, token);
         editor.commit();
+    }
+
+    public static void saveUser(User user, Context ctx){
+        setUsername(ctx, user.getUsername());
+        setPassword(ctx, user.getPassword());
+        setFirstName(ctx, user.getFirst_name());
+        setSurname(ctx, user.getSurname());
+        setEmail(ctx, user.getEmail());
     }
 }

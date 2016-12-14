@@ -8,11 +8,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.Calcada;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.User;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network.UserServices;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.R;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.SharedPreferencesUtils;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyJsonOBJCallback;
+import com.google.gson.Gson;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -51,9 +55,37 @@ public class LoginActivity extends AppCompatActivity {
         UserServices.authUser(user, this, new VolleyJsonOBJCallback() {
             @Override
             public void onSuccessResponse(JSONObject result) {
-                String success = getString(R.string.success_login);
-                Toast.makeText(LoginActivity.this, success, Toast.LENGTH_LONG).show();
-                goToMainMenuActivity();
+                try {
+                    SharedPreferencesUtils.setToken(LoginActivity.this, result.getString("token"));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                UserServices.getOne(LoginActivity.this, txtUsername, new VolleyJsonOBJCallback() {
+                    @Override
+                    public void onSuccessResponse(JSONObject result) {
+                        try {
+                            JSONObject userData = result.getJSONObject("data");
+                            String jsonStr = userData.toString();
+                            Gson gson = new Gson();
+                            User userObj = gson.fromJson(jsonStr, User.class);
+                            userObj.setPassword(txtPassword);
+                            SharedPreferencesUtils.saveUser(userObj, LoginActivity.this);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                        String success = getString(R.string.success_login);
+                        Toast.makeText(LoginActivity.this, success, Toast.LENGTH_LONG).show();
+                        goToMainMenuActivity();
+                    }
+
+                    @Override
+                    public void onErrorResponse(String result) {
+                        Toast.makeText(LoginActivity.this, result, Toast.LENGTH_LONG).show();
+                    }
+                });
+
             }
             @Override
             public void onErrorResponse(String result) {
