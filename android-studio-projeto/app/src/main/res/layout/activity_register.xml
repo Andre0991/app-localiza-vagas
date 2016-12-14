@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--todo: deve ter id?-->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
@@ -9,13 +8,28 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities.RegisterActivity">
+    android:background="@drawable/back"
+    tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.RegisterActivity"
+    android:weightSum="1">
+
+    <TextView
+        android:text="Para acessar a plataforma é necessário cadastrar-se."
+        android:layout_width="match_parent"
+        android:textAlignment="center"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView5"
+        android:textColor="#D3D3D3"
+        android:textSize="16sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal|bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/username"
-        android:id="@+id/textViewUsername" />
+        android:paddingTop="50dp"
+        android:id="@+id/textViewUsername"
+        android:textColor="#D3D3D3" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +38,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/escolha_sua_senha"
-        android:id="@+id/textViewPasword" />
+        android:id="@+id/textViewPasword"
+        android:textColor="#D3D3D3" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -34,7 +49,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/register_insert_name"
-        android:id="@+id/textView2" />
+        android:id="@+id/textView2"
+        android:textColor="#D3D3D3" />
 
     <EditText
         android:layout_width="match_parent"
@@ -44,7 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/insira_o_sobrenome"
-        android:id="@+id/textView4" />
+        android:id="@+id/textView4"
+        android:textColor="#D3D3D3" />
 
     <EditText
         android:layout_width="match_parent"
@@ -55,7 +72,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/insira_o_e_mail"
-        android:id="@+id/textView3" />
+        android:id="@+id/textView3"
+        android:textColor="#D3D3D3" />
 
     <EditText
         android:layout_width="match_parent"
@@ -63,10 +81,14 @@
         android:id="@+id/txtEmail" />
 
     <Button
-        android:layout_width="match_parent"
+        android:layout_width="282dp"
         android:layout_height="wrap_content"
-        android:text="@string/register"
+        android:text="Registrar"
         android:id="@+id/btnRegister"
-        android:onClick="register"/>
+        android:onClick="register"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/gradiente"
+        android:textColor="#D3D3D3" />
 
 </LinearLayout>
