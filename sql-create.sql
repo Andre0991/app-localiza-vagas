@@ -13,7 +13,8 @@ primary key (user_id));
 CREATE TABLE carros (placa varchar(10) not null,
 cor varchar(50) not null,
 modelo varchar(50) not null,
-primary key (placa));
+primary key (placa),
+foreign key (user_id) references usuarios (user_id));
 
 CREATE TABLE calcadas (calcada_id int auto_increment not null,
 numero int unsigned,
