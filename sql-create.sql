@@ -9,6 +9,12 @@ first_name varchar(100) not null,
 email varchar(100) not null,
 primary key (user_id));
 
+-- TODO: refactor
+CREATE TABLE carros (placa varchar(10) not null,
+cor varchar(50) not null,
+modelo varchar(50) not null,
+primary key (placa));
+
 CREATE TABLE calcadas (calcada_id int auto_increment not null,
 numero int unsigned,
 cep varchar(8) not null,

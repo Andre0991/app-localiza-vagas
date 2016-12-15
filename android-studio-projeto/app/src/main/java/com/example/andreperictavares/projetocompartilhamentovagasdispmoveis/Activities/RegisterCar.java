@@ -10,8 +10,12 @@ import android.widget.EditText;
 
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.Car;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.Placa;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Network.CarServices;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.R;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.ValidationUtils;
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Utils.VolleyJsonOBJCallback;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,6 +57,17 @@ public class RegisterCar extends AppCompatActivity {
             Placa placa = new Placa(txtPlateNumbers + txtPlateLetters);
             // TODO: colour picker
             Car car = new Car(placa, null, txtModel);
+            CarServices.addCar(car, this, new VolleyJsonOBJCallback() {
+                @Override
+                public void onSuccessResponse(JSONObject result) {
+
+                }
+
+                @Override
+                public void onErrorResponse(String result) {
+
+                }
+            });
         } catch (Exception e) {
             e.printStackTrace();
             return;

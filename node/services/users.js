@@ -68,6 +68,7 @@ class UserService {
         })
     }
 
+    // TODO: bug - retorna "user nao existe" qdo passowrd n eh enviado (confirmar)
     authUser(info, callback) {
         if (!info) {
             return false;
@@ -108,6 +109,7 @@ class UserService {
             }
             callback(rows);
         });
+        console.log(query.sql);
     }
 
     emailExists(email, callback){

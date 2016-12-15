@@ -37,10 +37,14 @@ var dist_c = new DistanciaController(apiRouter, passport);
 var HorarioController = require('./controllers/horarios');
 var horario_c = new HorarioController(apiRouter, passport);
 
+var CarController = require('./controllers/cars');
+var car_c = new CarController(apiRouter, passport);
+
 // seed the db for testing
 var UserService = require('./services/users');
 var CalcadasService = require('./services/calcadas');
 var DistanciaService = require('./services/distancia');
+var CarService = require('./services/cars');
 
 UserService.addUser({ username: "andre_default", password: "something_not_hashed", email: "andrept@gmail.com", first_name: "Andre", surname: "Peric Tavares"}, function () {
   UserService.authUser({ username: "andre_default", password: "something_not_hashed"}, function(res) {
