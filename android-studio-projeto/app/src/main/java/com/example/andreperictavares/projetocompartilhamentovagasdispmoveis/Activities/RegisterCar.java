@@ -1,5 +1,6 @@
 package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -7,6 +8,7 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.Car;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.Placa;
@@ -39,7 +41,7 @@ public class RegisterCar extends AppCompatActivity {
         addListeners();
     }
 
-    public void register(View view) {
+    public void registerCar(View view) {
         final String txtPlateNumbers  = edtTxtPlateNumbers.getText().toString();
         final String txtPlateLetters  = edtTxtPlateLetters.getText().toString();
         final String txtModel  = edtTxtModel.getText().toString();
@@ -60,12 +62,16 @@ public class RegisterCar extends AppCompatActivity {
             CarServices.addCar(car, this, new VolleyJsonOBJCallback() {
                 @Override
                 public void onSuccessResponse(JSONObject result) {
-
+                    String success = "Carro adicionado com sucesso!";
+                    Toast.makeText(RegisterCar.this, success, Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(RegisterCar.this, MainMenuActivity.class);
+                    startActivity(intent);
+                    RegisterCar.this.finish();
                 }
 
                 @Override
                 public void onErrorResponse(String result) {
-
+                    Toast.makeText(RegisterCar.this, result, Toast.LENGTH_LONG).show();
                 }
             });
         } catch (Exception e) {

@@ -16,7 +16,7 @@ public class Placa {
             throw new Exception("Placa deve ter exatamente 7 caracteres! (sem o hífen)");
         }
         this.letters = placa_sem_hifen.substring(0, 3);
-        this.numbers = placa_sem_hifen.substring(4, 8);
+        this.numbers = placa_sem_hifen.substring(4, 7);
     }
 
     public static boolean sequenceOfDigitsHasCorrectLength(String s) {

@@ -61,11 +61,8 @@ public class SearchFreeParkingLocationActivity extends LocationActivity {
         if (super.mCurrentLocation != null) {
             this.latitude = mCurrentLocation.getLatitude();
             this.longitude = mCurrentLocation.getLongitude();
-        }
-
-        // TODO: retirar dados mocados! trocar de volta para latitude, longitude
-        final Double latitudeMock =  -23.6221257;
-        final Double longitudeMock =  -46.533704;
+                    final Double latitudeMock =  this.latitude;
+        final Double longitudeMock =  this.longitude;
 
         ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMapAsync(new OnMapReadyCallback() {
             @Override
@@ -144,8 +141,11 @@ public class SearchFreeParkingLocationActivity extends LocationActivity {
                 });
             }
         });
-
-
+        }
+        else {
+            String erro = "Não foi possível obter localização";
+            Toast.makeText(SearchFreeParkingLocationActivity.this, erro, Toast.LENGTH_LONG).show();
+        }
     }
 
     private void zoomNearestCalcada(List<CalcadaInfo> cInfoList, GoogleMap googleMap) {

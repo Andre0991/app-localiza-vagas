@@ -75,10 +75,10 @@ class CarsService {
                     if (user_result.status == "success") {
                         user_id = user_result.data.user_id;
                         var car = {
-                            placa: info.plate,
-                            cor: info.color,
+                            placa: info.placa.letters + info.placa.numbers,
+                            cor: info.c,
                             user_id: user_id,
-                            modelo: info.model
+                            modelo: info.modelo
                         };
                         var query = that.connection.query('INSERT INTO carros SET ?', car, function (err, result) {
                             if (err) {
