@@ -30,7 +30,8 @@ class CarsController {
 
     postCar(req, res) {
         var carInfo = req.body.data;
-        CarsService.addCar(carInfo, function (resp) {
+        var username = req.body.username;
+        CarsService.addCar(carInfo, username, function (resp) {
             if (resp.status == "success") {
                 res.status(200).send(resp);
             }

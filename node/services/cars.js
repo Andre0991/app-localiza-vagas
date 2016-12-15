@@ -59,7 +59,7 @@ class CarsService {
             });
     }
 
-    addCar(info, callback) {
+    addCar(info, username, callback) {
         // TODO: lol
         var that = this;
         if (!info) {
@@ -71,7 +71,7 @@ class CarsService {
             }
             else if (resp.status == "fail") {
                 var user_id;
-                UserService.getOne(info.user.username, function (user_result) {
+                UserService.getOne(username, function (user_result) {
                     if (user_result.status == "success") {
                         user_id = user_result.data.user_id;
                         var car = {
