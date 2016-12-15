@@ -84,7 +84,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/txtEmail"
-        android:textColor="#D3D3D3" />
+        android:textColor="#D3D3D3"
+        android:inputType="textEmailAddress" />
 
     <Button
         android:layout_width="282dp"

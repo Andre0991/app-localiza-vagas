@@ -1,29 +1,19 @@
 package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities;
 
-import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.DAO.DAO;
+import android.graphics.Color;
 
 /**
- * Created by andreperictavares on 4/11/2016.
+ * Created by andreperictavares on 14/12/2016.
  */
 
-public class Car implements DAO {
-    @Override
-    public void create(Object o) {
+public class Car {
+    Placa placa;
+    Color c;
+    String modelo;
 
-    }
-
-    @Override
-    public Object read(Object o) {
-        return null;
-    }
-
-    @Override
-    public void update(Object o) {
-
-    }
-
-    @Override
-    public void delete(Object o) {
-
+    public Car(Placa placa, Color color, String modelo) {
+        this.placa = placa;
+        this.c = color;
+        this.modelo = modelo;
     }
 }

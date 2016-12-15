@@ -42,7 +42,8 @@
         <activity
             android:name=".Activities.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Activities.LoginActivity"></activity>
+        <activity android:name=".Activities.LoginActivity" />
+        <activity android:name=".Activities.RegisterCar"></activity>
     </application>
 
 </manifest>

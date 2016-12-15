@@ -44,4 +44,9 @@ public class MainMenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SearchFreeParkingLocationActivity.class);
         startActivity(intent);
     }
+
+    public void goToRegisterCarActivity(View view) {
+        Intent intent = new Intent(this, RegisterCar.class);
+        startActivity(intent);
+    }
 }

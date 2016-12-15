@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_register_car"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="0dp"
+    android:paddingLeft="0dp"
+    android:paddingRight="0dp"
+    android:paddingTop="0dp"
+    android:background="@drawable/back"
+    tools:context="com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Activities.RegisterCar"
+    android:weightSum="1">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="@string/plate_letters"
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp"
+        android:id="@+id/txtPlateLetters"
+        android:textColor="#D3D3D3" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtTxtPlateLetters"
+        android:textColor="#D3D3D3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="@string/plate_numbers"
+        android:layout_height="wrap_content"
+        android:paddingTop="50dp"
+        android:id="@+id/txtPlateNumbers"
+        android:textColor="#D3D3D3" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtTxtPlateNumbers"
+        android:textColor="#D3D3D3"
+        android:inputType="number" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/model"
+        android:id="@+id/txtModel"
+        android:textColor="#D3D3D3" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/edtTxtModel"
+        android:textColor="#D3D3D3" />
+
+    <Button
+        android:layout_width="282dp"
+        android:layout_height="wrap_content"
+        android:text="@string/register_car"
+        android:id="@+id/btnRegister"
+        android:onClick="register"
+        android:layout_marginTop="70dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/gradiente"
+        android:textColor="#D3D3D3" />
+
+</LinearLayout>
