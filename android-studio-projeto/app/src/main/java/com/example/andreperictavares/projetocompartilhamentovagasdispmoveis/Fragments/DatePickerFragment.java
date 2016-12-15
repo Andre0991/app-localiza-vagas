@@ -1,5 +1,6 @@
 package com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Fragments;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.Entities.Horario;
 import com.example.andreperictavares.projetocompartilhamentovagasdispmoveis.R;
 
 import me.tittojose.www.timerangepicker_library.TimeRangePickerDialog;
@@ -18,6 +20,14 @@ public class DatePickerFragment extends Fragment implements TimeRangePickerDialo
     Button selectTimeRangeButton;
     TextView timeRangeSelectedTextView;
     public static final String TIMERANGEPICKER_TAG = "timerangepicker";
+
+
+    OnHeadlineSelectedListener mCallback;
+
+    // Container Activity must implement this interface
+    public interface OnHeadlineSelectedListener {
+        public void onArticleSelected(Horario horarioInicio, Horario horarioFim);
+    }
 
     public DatePickerFragment() {
     }
@@ -56,5 +66,21 @@ public class DatePickerFragment extends Fragment implements TimeRangePickerDialo
         String endTime = endHour + " : " + endMin;
         timeRangeSelectedTextView.setText(startTime + "\n" + endTime);
     }
+
+        // TODO: refactorar (deprecated)
+        // http://stackoverflow.com/questions/32083053/android-fragment-onattach-deprecated
+        @Override
+        public void onAttach(Activity activity) {
+            super.onAttach(activity);
+
+            // This makes sure that the container activity has implemented
+            // the callback interface. If not, it throws an exception
+            try {
+                mCallback = (OnHeadlineSelectedListener) activity;
+            } catch (ClassCastException e) {
+                throw new ClassCastException(activity.toString()
+                        + " must implement OnHeadlineSelectedListener");
+            }
+        }
 
 }

@@ -21,7 +21,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AddScheduleParkingLocation extends FragmentActivity {
+public class AddScheduleParkingLocation extends FragmentActivity implements DatePickerFragment.OnHeadlineSelectedListener {
 
     // OBJETIVO: Criar lista de DisponibilidadeCalcada que representa os horários
     // em que o usuário tem a calçada disponível para outros estacionarem
@@ -52,18 +52,26 @@ public class AddScheduleParkingLocation extends FragmentActivity {
     }
 
     public void enviarRequisicaoTest(View view) {
-        for (DisponibilidadeCalcada disp : disponibilidades) {
-            DisponibilidadeServices.addDisponibilidade(disp, this, new VolleyJsonOBJCallback() {
-                @Override
-                public void onSuccessResponse(JSONObject result) {
-                    String sucesso = "Calçada adicionada com sucesso!";
-                    Toast.makeText(AddScheduleParkingLocation.this, sucesso, Toast.LENGTH_LONG).show();
-                }
-                @Override
-                public void onErrorResponse(String result) {
-                    Toast.makeText(AddScheduleParkingLocation.this, result, Toast.LENGTH_LONG).show();
-                }
-            });
-        }
+    }
+
+    private void sendRequestCalcada(DisponibilidadeCalcada disp) {
+        DisponibilidadeServices.addDisponibilidade(disp, this, new VolleyJsonOBJCallback() {
+            @Override
+            public void onSuccessResponse(JSONObject result) {
+                String sucesso = "Calçada adicionada com sucesso!";
+                Toast.makeText(AddScheduleParkingLocation.this, sucesso, Toast.LENGTH_LONG).show();
+            }
+            @Override
+            public void onErrorResponse(String result) {
+                Toast.makeText(AddScheduleParkingLocation.this, result, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    @Override
+    public void onArticleSelected(Horario horarioInicio, Horario horarioFim) {
+        // TODO: Tirar segunda hardcoded
+        DisponibilidadeCalcada disponibilidade = new DisponibilidadeCalcada(DisponibilidadeCalcada.Day.MONDAY, horarioInicio, horarioFim);
+        sendRequestCalcada(disponibilidade);
     }
 }
